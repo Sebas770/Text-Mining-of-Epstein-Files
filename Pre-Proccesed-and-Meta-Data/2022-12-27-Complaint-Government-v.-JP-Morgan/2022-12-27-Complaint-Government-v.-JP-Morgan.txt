@@ -1,0 +1,1394 @@
+            Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 1 of 30
+
+
+
+
+                      UNITED STATES DISTRICT COURT FOR THE
+                         SOUTHERN DISTRICT OF NEW YORK
+
+GOVERNMENT OF THE UNITED                      )             Case Number: 1:22-cv-10904-UA
+STATES VIRGIN ISLANDS                         )
+                                              )             ACTION FOR DAMAGES
+                       PLAINTIFF,             )
+                                              )             JURY TRIAL DEMANDED
+                V.                            )
+                                              )
+JPMORGAN CHASE BANK, N.A.                     )
+                                              )
+                       DEFENDANT.             )
+
+                     COMPLAINT AND DEMAND FOR A JURY TRIAL
+
+       Plaintiff Government of the United States Virgin Islands (“Government”) files this
+
+Complaint against JPMorgan Chase Bank, N.A. (“JP Morgan”) for violations of Trafficking
+
+Victims Protection Act, 18 U.S.C. §§ 1591 to 1595, the Virgin Islands Criminally Influenced and
+
+Corrupt Organizations Act, 14 V.I.C. §§ 600 to 614, and the Virgin Islands Consumer Fraud and
+
+Deceptive Business Practices Act, 12A V.I.C. §§ 301 to 336, and in support thereof alleges as
+
+follows:
+
+                                            PARTIES
+
+       1.       The Attorney General of the United States Virgin Islands (hereinafter “Virgin
+
+Islands”) brings this parens patriae action on behalf of the Plaintiff, Government of the Virgin
+
+Islands, pursuant to 15 U.S.C. § 1595(d) and 3 V.I.C. § 114 and her statutory authority to enforce
+
+the laws of the Virgin Islands and protect public safety.
+
+       2.       The Attorney General, pursuant to her authority to represent the Government of the
+
+United States Virgin Islands, also acts on behalf of, and with the lawfully delegated authority of,
+
+the Virgin Islands Department of Licensing and Consumer Affairs under 12 V.I.C. § 327 in regard
+
+to Count Four of the Government’s Complaint alleging violations of the Virgin Islands Consumer
+
+            Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 2 of 30
+
+
+
+
+Fraud and Deceptive Business Practices Act.
+
+       3.       This action stems from an enforcement action the Government filed against the
+
+Estate of Jeffrey E. Epstein, the Co-Executors of the Estate, and various entities relating to Jeffrey
+
+Epstein (“Epstein”), under the Virgin Islands’ Criminally Influenced and Corrupt Organizations
+
+Act (“CICO Act”), see Government of the U.S. Virgin Islands v. Indyke et al., Case No. ST-20-
+
+CV-14 (Super. Ct. V.I. Jan. 15, 2020). The Attorney General brings this action, after presenting
+
+her findings to JP Morgan in September 2022, in her ongoing effort to protect public safety and to
+
+hold accountable those who facilitated or participated in, directly or indirectly, the trafficking
+
+enterprise Epstein helmed. The investigation revealed that JP Morgan knowingly, negligently, and
+
+unlawfully provided and pulled the levers through which recruiters and victims were paid and was
+
+indispensable to the operation and concealment of the Epstein trafficking enterprise. Financial
+
+institutions can connect—or choke—human trafficking networks, and enforcement actions filed
+
+and injunctive relief obtained by attorneys general are essential to ensure that enterprises like
+
+Epstein’s cannot flourish in the future.
+
+       4.       Defendant JPMorgan Chase Bank, N.A. is an American multinational investment
+
+bank and financial services company headquartered in New York City and incorporated in
+
+Delaware.
+
+       5.       At all relevant times, JP Morgan engaged in business in the Virgin Islands,
+
+including, but not limited to, the acts and practices described herein.
+
+       6.       As described below, based on documents reviewed and interviews conducted by
+
+the Government, JP Morgan knowingly facilitated, sustained, and concealed the human trafficking
+
+network operated by Jeffrey Epstein from his home and base in the Virgin Islands, and financially
+
+benefitted from this participation, directly or indirectly, by failing to comply with federal banking
+
+
+
+                                                  2
+
+            Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 3 of 30
+
+
+
+
+regulations. JP Morgan facilitated and concealed wire and cash transactions that raised suspicion
+
+of—and were in fact part of—a criminal enterprise whose currency was the sexual servitude of
+
+dozens of women and girls in and beyond the Virgin Islands. Human trafficking was the principal
+
+business of the accounts Epstein maintained at JP Morgan.
+
+       7.       Upon information and belief, JP Morgan turned a blind eye to evidence of human
+
+trafficking over more than a decade because of Epstein’s own financial footprint, and because of
+
+the deals and clients that Epstein brought and promised to bring to the bank. These decisions were
+
+advocated and approved at the senior levels of JP Morgan, including by the former chief executive
+
+of its asset management division and investment bank, whose inappropriate relationship with
+
+Epstein should have been evident to the bank. Indeed, it was only after Epstein’s death that JP
+
+Morgan belatedly complied with federal banking regulations regarding Epstein’s accounts.
+
+                      JURISDICTION, VENUE, AND RELATED CASE
+
+       8.       This action is brought pursuant to and based on federal and Virgin Islands statutes,
+
+including the federal Trafficking Victims Protection Act, 18 U.S.C. §§ 1591 to 1595 (“TVPA”),
+
+and the federal Bank Secrecy Act, 31 U.S.C. §§ 5311 to 5336 (“BSA”).
+
+       9.       This Court has federal question subject-matter jurisdiction pursuant to 28 U.S.C.
+
+§ 1331 because the Government’s TVPA and BSA-based causes of action arise under federal law.
+
+       10.      This Court has supplemental jurisdiction over the Government’s Virgin Islands law
+
+claims pursuant to 28 U.S.C. § 1367(a) because these claims are so related to those arising under
+
+or based on federal law as to form part of the same case or controversy under Article III of the
+
+United States Constitution.
+
+       11.      This Court is an “appropriate district court of the United States” in which for the
+
+Government to obtain appropriate relief under 18 U.S.C. § 1595(d) and venue is proper under 28
+
+
+
+                                                 3
+
+          Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 4 of 30
+
+
+
+
+U.S.C. § 1391(b)(2) because Defendant maintains its principal place of business within this
+
+judicial district, so that this Court may exercise general personal jurisdiction over Defendant, and
+
+because many of the alleged acts and omissions of Defendant giving rise to the Government’s
+
+claims took place within this judicial district, so that this Court may exercise specific personal
+
+jurisdiction over Defendant.
+
+       12.      Pursuant to Local Civil Rule 1.6(a), the undersigned believe that this action is
+
+related to Doe 1 v. JP Morgan Chase & Co., No. 1:22-cv-10019 (S.D.N.Y. Nov. 24, 2022), because
+
+both actions arise from a common nucleus of operative fact involving Defendant JP Morgan’s
+
+alleged participation, directly or indirectly, in Epstein’s sex-trafficking venture by facilitating
+
+payments to women and girls, channeling funds to Epstein to fund the operation, and concealing
+
+Epstein’s criminal conduct by failing to comply with federal banking regulations.
+
+                                        BACKGROUND
+
+I.     JP Morgan’s Federal and State Legal Requirements
+
+       13.     JP Morgan is subject to federal laws, including the BSA and the Uniting and
+
+Strengthening America by Providing Appropriate Tools Required to Intercept and Obstruct
+
+Terrorism Act of 2001, Pub. L. No. 107-56, 115 Stat. 272 (“USA PATRIOT Act”).
+
+       14.     Under both the BSA and USA PATRIOT Act, JP Morgan is required to implement
+
+adequate, risk-based anti-money laundering (“AML”) policies and systems to detect and prevent
+
+money laundering or other use of the institution’s services to facilitate criminal activities. This
+
+includes, but is not limited to, maintaining a due diligence program, filing suspicious activity
+
+reports (“SARs”) when the financial institutions detect suspicious behavior and currency
+
+transaction reports (“CTRs”) for currency transactions or series of currency transactions that
+
+exceed $10,000 in a 24-hour period, preventing structuring or assistance with structuring of
+
+
+
+                                                 4
+
+          Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 5 of 30
+
+
+
+
+transactions undertaken for the purpose of evading federal reporting requirements, and maintaining
+
+systems to prevent money laundering.
+
+       15.     The FDIC and the other federal banking regulators, including the Federal Reserve
+
+Board and Office of the Comptroller of the Currency, formed an interagency organization known
+
+as Federal Financial Institutions Examination Council (“FFIEC”).
+
+       16.     To provide further guidance to banks on what BSA compliance requires, FFIEC
+
+published a Bank Secrecy Act/Anti-Money Laundering Examination Manual (“BSA Manual”).
+
+The BSA Manual explains that an effective SAR program is essential:
+
+       Suspicious activity reporting forms the cornerstone of the BSA reporting system. It
+       is critical to the United States’ ability to utilize financial information to combat
+       terrorism, terrorist financing, money laundering and other financial crimes.
+       Examiners and banks should recognize that the quality of SAR content is critical to
+       the adequacy and effectiveness of the suspicious activity reporting system.1
+
+       17.     Pursuant to the BSA Manual, “[p]roper monitoring and reporting processes are
+
+essential to ensuring that the bank has an adequate and effective BSA compliance program.
+
+Appropriate policies, procedures, and processes should be in place to monitor and identify unusual
+
+activity.” 2 When a bank detects suspicious activity, it is required to report that information within
+
+30 days to the U.S. Department of the Treasury’s Financial Crimes Enforcement Network
+
+(“FinCEN”). The reporting requirement ensures that the government is able to monitor and act
+
+when alerted to potential illegal conduct.
+
+       18.     Appendix F of the BSA Manual includes examples of suspicious transactions that
+
+may indicate money laundering, terrorist financing, or fraud, including:
+
+
+
+1
+  FFIEC Bank Secrecy Act/Anti-Money Laundering Examination Manual, Suspicious Activity
+Reporting at 1 (2014)
+https://bsaaml.ffiec.gov/docs/manual/06_AssessingComplianceWithBSARegulatoryRequirement
+s/04.pdf.
+2
+  Id. at 2.
+                                                  5
+
+          Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 6 of 30
+
+
+
+
+               a.      Funds transfer activity is unexplained, repetitive, or shows unusual patterns;
+
+               b.      The currency transaction patterns of a business show a sudden change
+
+                       inconsistent with normal activities;
+
+               c.      Unusual transfers of funds occur among related accounts or among accounts
+
+                       that involve the same or related principals;
+
+               d.      Currency is deposited or withdrawn in amounts just below identification or
+
+                       reporting thresholds;
+
+               e.      Regarding nonprofit or charitable organizations, financial transactions
+
+                       occur for which there appears to be no logical economic purpose or in which
+
+                       there appears to be no link between the stated activity of the organization
+
+                       and the other parties in the transaction;
+
+               f.      Funds are sent or received via international transfers from or to higher-risk
+
+                       locations.
+
+       19.     In addition, the CICO Act, 14 V.I.C. § 600, incorporates violations of Virgin Islands
+
+Law and federal felonies, which includes the BSA and the USA PATRIOT Act.
+
+II.    Jeffrey Epstein’s Criminal Conduct
+
+       20.     Jeffrey Epstein was a resident of the Virgin Islands.
+
+       21.     In 2008, Epstein pled guilty to one count of solicitation of prostitution with a minor
+
+in Palm Beach, Florida. As a result of that conviction, Epstein was forced to register as a sex
+
+offender in the Virgin Islands.
+
+       22.     Epstein was a Tier 1 offender under Virgin Islands law based upon his Florida
+
+conviction of procuring a minor for prostitution.
+
+       23.     On January 15, 2020, the Government filed a lawsuit against Jeffrey Epstein’s
+
+
+
+                                                  6
+
+          Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 7 of 30
+
+
+
+
+estate and related individuals and entities for violation of the CICO Act, 14 V.I.C. §§ 600 to 614,
+
+and civil conspiracy, which the Government recently settled. As laid out in the Government’s
+
+Second Amended Complaint, ST-20-CV-14, (“SAC”) (attached as Exhibit 1), Epstein created a
+
+network of companies and individuals who participated in, directly or indirectly, and conspired with
+
+him in a pattern of criminal activity related to the sex trafficking, forced labor, sexual assault, child
+
+abuse, and sexual servitude of these young women and children. SAC ¶¶ 43-75. Epstein and his
+
+associates trafficked underage girls to the Virgin Islands, held them captive, and sexually abused
+
+them, causing them grave physical, mental, and emotional injury. Id.
+
+        24.     To accomplish this criminal activity, Epstein formed an association in fact with
+
+both companies and non-profit organizations that he owned and operated, as well as individuals,
+
+who were willing to participate in, directly or indirectly, facilitate, and conceal Epstein's criminal
+
+activity in exchange for Epstein's bestowal of financial and other benefits, including sexual
+
+services and forced labor from victims. Id. ¶¶ at 157-195.
+
+        25.     In October 2012, the Southern Trust Company—one of the companies Epstein
+
+owned—applied for economic benefits from the Virgin Islands Economic Development
+
+Commission (“EDC”) so the company could provide “cutting edge consulting services” in the area
+
+of “biomedical and financial informatics.” Id. ¶¶ 157-158. Southern Trust Company received a 10-
+
+year package of economic incentives running from February 1, 2013 until January 31, 2023 that
+
+included a 90% exemption from income taxes and 100% exemptions from gross receipts, excise,
+
+and withholding taxes in the Virgin Islands. Id. ¶ 159.
+
+        26.     Southern Trust, in fact, appeared to perform no informatics or data-mining services
+
+during this period. Instead, Southern Trust funded the Epstein Enterprise (defined below), acting as
+
+a conduit for payment to foreign women, credit cards, airplanes and other instrumentalities. Id.
+
+
+
+                                                   7
+
+          Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 8 of 30
+
+
+
+
+¶¶ 167-173.
+
+       27.     This illicit association of Epstein, businesses, and his associates constitutes what is
+
+referred to herein as the “Epstein Enterprise.” Specifically included in the Epstein Enterprise were
+
+the following companies and non-profit organizations, all of which had accounts with JP Morgan:
+
+2013 Butterfly Trust, Coatue Enterprises, LLC, C.O.U.Q. Foundation, Enhanced Education,
+
+Financial Trust Company, Inc., HBRK Associates, Inc., Hyperion Air, Inc, JEGE, Inc., JEGE,
+
+LLC, NES, LLC, Plan D, LLC, Southern Financial, LLC, and Southern Trust Company.
+
+       28.     Epstein used his wealth and power to create the Epstein Enterprise, which engaged
+
+in a pattern of criminal activity by repeatedly procuring and subjecting underage girls and young
+
+women to unlawful sexual conduct, sex trafficking, and forced labor.
+
+       29.     Many of these women, particularly after Epstein’s conviction in 2008, were
+
+trafficked from Eastern Europe. As the Government explained in its Second Amended Complaint,
+
+these women were recruited and, in several instances, required to marry other Epstein victims in
+
+order to maintain their immigration status and their availability to Epstein. Id. ¶¶ 62- 63, 78, 86.
+
+       30.     As also alleged in the Second Amended Complaint, recruiters and victims were paid
+
+in cash or through entities set up by Epstein and/or his associates. Id. ¶ 100. Many of these companies
+
+were shell companies, that existed merely to transfer money to other accounts, or to shelter Epstein’s
+
+assets from judgment. Id. ¶ 116.
+
+       31.     Epstein’s lawyer, Darren K. Indyke, and accountant, Richard Kahn, now the Co-
+
+Executors of Epstein’s Estate, authorized or directed many of the transactions in JP Morgan accounts
+
+held by Epstein or related entities. Id. ¶¶ 8-10, 76-117.
+
+       32.     Epstein and the Epstein Enterprise continued trafficking and sexually abusing
+
+young women and female children until Epstein was arrested by federal law enforcement
+
+
+
+                                                   8
+
+          Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 9 of 30
+
+
+
+
+authorities on July 6, 2019 on federal charges for the sex trafficking of minors.
+
+       33.     Epstein was found dead on August 10, 2019 while in custody in a federal detention
+
+center in New York on charges for sex-trafficking crimes. Id. ¶ 7.
+
+                                        ALLEGATIONS
+
+I.     Jeffrey Epstein Was an Extremely High-Risk Customer
+
+       34.     Jeffrey Epstein’s reputation as a sex trafficker and abuser of women and girls was
+
+well-known and well-publicized for more than a decade before his death.
+
+       35.     Between 2005 and 2013, there were numerous press reports that Epstein sexually
+
+abused women and girls.
+
+       36.     In March 2005, there were press reports that Epstein paid a 14-year old girl in Palm
+
+Beach, Florida for a “massage” and then molested her. Following these allegations, multiple
+
+underage girls, many of them high school students, told police that Epstein also hired them to give
+
+sexual massages.
+
+       37.     Throughout 2006—when Epstein was arrested in Palm Beach, Florida for
+
+solicitation of a minor—there was extensive press regarding the nature and extent of Epstein’s
+
+sexual offenses, including the existence of dozens of victims.
+
+       38.     In 2008, Epstein pled guilty to sexual offenses in Palm Beach, Florida, including
+
+solicitating a minor for prostitution. Epstein was sentenced to 18 months in jail and was required
+
+to register as a sex offender.
+
+       39.     In 2009, the non-prosecution agreement between Epstein and the United States
+
+became public. It revealed allegations that Epstein may have used interstate commerce to induce
+
+minors to engage in prostitution, engaged in illicit sexual conduct with minors, and trafficked
+
+minors.
+
+
+
+                                                 9
+
+         Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 10 of 30
+
+
+
+
+       40.     In 2010, press reports noted allegations that Epstein was involved with Eastern
+
+European women in particular and that a modeling agency he helped fund brought “young girls . .
+
+. often from Eastern Europe” to the United States on Epstein’s private jets.3
+
+II.    JP Morgan Knew Epstein Was a Felon, Registered Sex Offender, and Alleged Child
+       Trafficker
+
+       41.     JP Morgan did business with Jeffrey Epstein from as early as              . In that
+
+time, JP Morgan serviced approximately                Epstein-related accounts collectively worth
+
+                               .
+
+       42.
+
+
+
+
+       43.
+
+
+
+
+                                                                                                 .
+
+       44.
+
+
+
+
+       45.
+
+
+
+
+3
+ Conchita Sarnoff, Jeffrey Epstein Pedophile Billionaire and His Sex Den, The Daily Beast (July
+22, 2010), https://www.thedailybeast.com/jeffrey-epstein-pedophile-billionaire-and-his-sex-den.
+                                                10
+
+ Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 11 of 30
+
+
+
+
+46.
+
+                           :
+
+
+
+
+47.
+
+
+
+
+      a.
+
+
+
+
+      b.
+
+
+
+
+48.
+
+
+
+
+                               11
+
+         Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 12 of 30
+
+
+
+
+       49.
+
+
+
+
+       50.
+
+
+
+
+III.   Head of JP Morgan’s Private Bank Had Close Personal Relationship With Epstein
+
+       51.     Former senior executive, Jes Staley (“Staley”), developed a close relationship with
+
+Epstein when Staley was the head of JP Morgan’s Private Bank, which is a segment of JP Morgan’s
+
+business dedicated to extremely wealthy clients with at least $10 million in assets.
+
+       52.
+
+
+
+
+       53.
+
+
+
+
+       54.
+
+
+
+                                                12
+
+         Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 13 of 30
+
+
+
+
+       55.
+
+
+
+
+       56.      At the time of Epstein’s death in 2019, Staley was the Chief Executive Officer of
+
+Barclays; however, Staley stepped down from that position in November 2021 after British
+
+financial regulators concluded an investigation into Staley’s characterization of his relationship
+
+with Epstein.
+
+IV.    JP Morgan Ignored Obvious Red Flags Relating to Epstein’s Accounts
+
+       57.
+
+
+
+
+       58.
+
+
+
+
+       59.
+
+
+
+                                               13
+
+        Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 14 of 30
+
+
+
+
+       60.
+
+
+
+
+        .
+
+       61.    Each of these red flags was serious; together, they suggest a pattern of potentially
+
+illegal conduct that should have prompted action by JP Morgan.
+
+
+
+
+                                               14
+
+      Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 15 of 30
+
+
+
+
+V.   Epstein Brought Additional High Net Worth Clients to JP Morgan
+
+     62.
+
+
+
+     63.
+
+
+
+
+     64.
+
+
+
+
+     65.
+
+
+
+     66.
+
+
+
+      .
+
+     67.
+
+
+
+
+                                       15
+
+          Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 16 of 30
+
+
+
+
+         68.   J
+
+
+
+                                                                                                   .
+
+         69.   In January 2013—                                                          —the Office
+
+of the Comptroller of the Currency (“OCC”) entered into a consent order with JP Morgan regarding
+
+deficiencies in the bank’s overall program for BSA/AML compliance. The OCC found—
+
+consistent with the Government's findings here—that JP Morgan failed to develop adequate due
+
+diligence on customers and failed to comply with federal banking regulations. In fact, the OCC
+
+noted that JP Morgan “failed to identify significant volumes of suspicious activity”.4
+
+         70.
+
+                                   .
+
+         71.   The New York State Department of Financial Services (“NYSDFS”) investigated
+
+Deutsche Bank for failures to monitor Epstein’s accounts. On July 6, 2020, the NYSDFS and
+
+Deutsche Bank entered into a Consent Order with a $150 million penalty, which stated, in relevant
+
+parts:
+
+               a.     “The Bank’s fundamental failure was that, although the Bank properly
+
+
+4
+  NYSDFS Consent Order at 2-4 (Jan. 14, 2013), https://www.occ.treas.gov/news-
+issuances/news-releases/2013/nr-occ-2013-8a.pdf.
+                                                16
+
+        Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 17 of 30
+
+
+
+
+                     classified Mr. Epstein as high-risk, the Bank failed to scrutinize the activity
+
+                     in the accounts for the kinds of activity that were obviously implicated by
+
+                     Mr. Epstein’s past. The Bank was well aware not only that Mr. Epstein had
+
+                     pled guilty and served prison time for engaging in sex with a minor but also
+
+                     that there were public allegations that his conduct was facilitated by several
+
+                     named co-conspirators. Despite this knowledge, the Bank did little or
+
+                     nothing to inquire into or block numerous payments to named co-
+
+                     conspirators, and to or on behalf of numerous young women, or to inquire
+
+                     how Mr. Epstein was using, on average, more than $200,000 per year in
+
+                     cash.”
+
+              b.     “Whether or to what extent those payments or that cash was used by Mr.
+
+                     Epstein to cover up old crimes, to facilitate new ones, or for some other
+
+                     purpose are questions that must be left to the criminal authorities, but the
+
+                     fact that they were suspicious should have been obvious to Bank personnel
+
+                     at various levels. The Bank’s failure to recognize this risk constitutes a
+
+                     major compliance failure.”
+
+              c.     “These errors are unacceptable in the context of a major international bank
+
+                     and inexcusable in the context of the heightened scrutiny that should have
+
+                     occurred in the monitoring of a high-risk customer.”
+
+       72.    The NYSDFS also found fault with Deutsche Bank’s failure to obtain answers
+
+regarding Epstein’s use of his accounts to pay women with Eastern European surnames: “In a May
+
+2018 email, a compliance officer submitted an inquiry . . . about payments to the accounts of
+
+women with Eastern European surnames at a Russian bank, and asking for an explanation of the
+
+
+
+                                               17
+
+            Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 18 of 30
+
+
+
+
+purpose of the wire transactions and Epstein’s relationship with the counterparties.”5
+
+          73.
+
+
+
+
+VI.       JP Morgan Fraudulently Concealed Its Continuing Violations
+
+          74.    JP Morgan’s continuous illegal conduct has caused repeated and continuous injury.
+
+          75.
+
+
+
+
+JP Morgan ignored numerous red flags and failed to comply with federal banking regulations until
+
+years later after JP Morgan was no longer benefiting from Epstein’s business.
+
+          76.    JP Morgan also engaged in a course of conduct aimed at fraudulently concealing
+
+its illegal conduct, including by failing to timely comply with federal banking regulations in order
+
+to profit from Epstein’s wealth and connections.
+
+          77.    A key purpose of federal banking regulations is to give law enforcement real-time
+
+information so that it can act to detect violations of the law and protect public safety.
+
+          78.    The Government of the Virgin Islands did not know, and could not have known,
+
+that Epstein used JP Morgan to facilitate his trafficking enterprise or that JP Morgan turned a blind
+
+eye to unusual cash transactions and wires and failed to carry out or follow up on basic due
+
+diligence and to timely comply with federal banking regulations, as required by the law.
+
+
+
+5
+    Id. at 15.
+                                                 18
+
+          Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 19 of 30
+
+
+
+
+        79.     Over more than a decade, JP Morgan clearly knew it was not complying with
+
+federal regulations in regard to Epstein-related accounts as evidenced by its too-little too-late
+
+efforts after Epstein was arrested on federal sex trafficking charges and shortly after his death,
+
+when JP Morgan belatedly complied with federal law.
+
+        80.     The continued illegal conduct by JP Morgan has caused repeated and continuous
+
+injury. JP Morgan’s illegal conduct was not completed nor were all damages incurred until the
+
+wrongdoing ceased in August 2019 when JP Morgan began belatedly complying with federal
+
+banking regulations in regard to Epstein-related accounts.
+
+                                      CAUSES OF ACTION
+
+                                           COUNT ONE
+                            Participating in a Sex-Trafficking Venture
+                          Violation of Trafficking Victims Protection Act
+                           18 U.S.C. §§ 1591(a)(2), 1595(d) (Parens Patriae)
+
+        81.     The Government restates and realleges paragraphs 1 to 80 of this Complaint as if
+
+fully set forth herein.
+
+        82.     The Government brings this Count as parens patriae on behalf of the residents and
+
+visitors of the United States Virgin Islands and pursuant to the Attorney General’s express
+
+statutory authority.
+
+        83.     JP Morgan knowingly and intentionally participated in Epstein’s sex-trafficking
+
+venture that was in and affecting interstate and foreign commerce, together and with others, in
+
+violation of 18 U.S.C. § 1591(a)(2) by
+
+                                 , and concealing Epstein’s criminal conduct by failing to comply
+
+with federal banking law.
+
+        84.     JP Morgan knowingly and intentionally benefitted financially from and received
+
+value for its participation in the sex-trafficking venture in which Epstein and his co-conspirators,
+
+
+                                                19
+
+         Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 20 of 30
+
+
+
+
+with JP Morgan’s knowledge or reckless disregard of the fact, would use means of force, threats
+
+of force, fraud, coercion, and a combination of such means to sexually abuse young women and
+
+underage girls, including by causing them to engage in commercial sex acts, in the Virgin Islands
+
+and elsewhere.
+
+       85.       Among the financial benefits that JP Morgan received for participating in and
+
+facilitating Epstein’s sex-trafficking venture was the deposit of funds that Epstein—a Virgin
+
+Islands resident—and Epstein-controlled entities located in the Virgin Islands made to JP Morgan.
+
+JP Morgan profited from the use of these deposits. Epstein and Epstein-controlled entities located
+
+in the Virgin Islands deposited these funds in exchange for JP Morgan’s facilitation of and
+
+participation in Epstein’s sex-trafficking venture.
+
+       86.       Also, among the financial benefits that JP Morgan received for participating in and
+
+facilitating Epstein’s sex-trafficking venture were
+
+
+
+
+                                                                                        .
+
+       87.       JP Morgan financially profited from the deposits made by Epstein and Epstein-
+
+controlled entities located in the Virgin Islands and from
+
+                                              in exchange for its known facilitation of and implicit
+
+participation in Epstein’s sex trafficking venture.
+
+       88.       JP Morgan knew and recklessly disregarded and concealed the fact that it was
+
+Epstein’s pattern and practice to use the channels and instrumentalities of interstate and foreign
+
+commerce to recruit, entice, harbor, transport, provide, obtain, and maintain young women and
+
+
+
+
+                                                 20
+
+         Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 21 of 30
+
+
+
+
+underage girls for purposes of causing them to engage in commercial sex acts in violation of 18
+
+U.S.C. § 1591(a)(1).
+
+       89.     JP Morgan and its employees had actual knowledge that they were facilitating
+
+Epstein’s sexual abuse and sex-trafficking conspiracy to recruit, entice, harbor, transport, provide,
+
+obtain, and maintain young women and underage girls to engage in commercial sex acts through
+
+the means of force, threats of force, fraud, abuse of process, and coercion.
+
+       90.     Despite this knowledge, JP Morgan intentionally paid for, concealed, facilitated,
+
+and participated in Epstein’s and his co-conspirators’ violations of 18 U.S.C. § 1591(a), which JP
+
+Morgan knew and was in reckless disregard of the fact that Epstein and his co-conspirators would
+
+use its bank accounts and financial transactions to coerce, defraud, and force young women and
+
+underage girls to engage in commercial sex acts.
+
+       91.     JP Morgan, through its employees and agents and their role in facilitating the
+
+financial aspect of Epstein’s enterprise, actively facilitated or participated in the sex-trafficking
+
+conspiracy in which Epstein and his co-conspirators led young women and underage girls in the
+
+Virgin Islands and elsewhere to believe that they would be rewarded if they cooperated with
+
+Epstein and his co-conspirators and acquiesced to their demands.
+
+       92.     JP Morgan committed this affirmative conduct knowing or in reckless disregard of
+
+the fact that Epstein would use cash transactions and financial support provided by JP Morgan as
+
+a means to defraud, force, and coerce commercial sex acts from young women and underage girls.
+
+       93.     In addition to having actual knowledge that it was participating in and facilitating
+
+the Epstein sex-trafficking venture, JP Morgan also knew that it was participating in and
+
+facilitating a venture that was engaged in coercive sex trafficking in violation of 18 U.S.C. §
+
+1591(a)(1).
+
+
+
+                                                 21
+
+          Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 22 of 30
+
+
+
+
+        94.     In exchange for facilitating and covering up Epstein’s commercial sex trafficking,
+
+JP Morgan’s employees received financial benefits and career advancement from JP Morgan.
+
+        95.     Facilitating and covering up Epstein’s sex trafficking venture was a means for JP
+
+Morgan employees to obtain economic success and promotion within JP Morgan.
+
+        96.     JP Morgan’s knowing and intentional conduct has caused serious harm to the
+
+Virgin Islands and its residents, including without limitation financial harm, by facilitating the
+
+commission of sexual abuse against young women and underage girls, including their engagement
+
+in commercial sex acts, in the Virgin Islands.
+
+        97.     JP Morgan’s tortious conduct in violating the TVPA was outrageous and intentional
+
+because it was in deliberate furtherance of a widespread and dangerous criminal sex-trafficking
+
+venture operated in and from the Virgin Islands. JP Morgan’s tortious conduct also evidenced a
+
+high degree of moral turpitude and demonstrated such wanton disregard for the safety of young
+
+women and underage girls in the Virgin Islands and elsewhere as to imply a deliberate indifference
+
+to its legal obligations.
+
+        98.     By virtue of these knowing and intentional violations of 18 U.S.C. § 1591(a)(2), JP
+
+Morgan is liable to the Government for all appropriate relief under 18 U.S.C. § 1595(d), including
+
+damages suffered by the Government and/or Epstein’s victims, punitive damages, restitution,
+
+appropriate injunctive relief, fines, reasonable attorneys’ fees, and all such other relief as the Court
+
+deems appropriate.
+
+                                      COUNT TWO
+   Criminal Activity—Participating, Directly or Indirectly, in a Sex-Trafficking Venture
+          Violation of Trafficking Victims Protection Act, 18 U.S.C. § 1591(a)(2),
+  actionable under Virgin Islands Criminally Influenced and Corrupt Organizations Act,
+                               14 V.I.C. §§ 604(e) and 605(a)
+
+
+
+
+                                                  22
+
+           Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 23 of 30
+
+
+
+
+          99.    The Government restates and realleges paragraphs 1 to 98 of this Complaint as if
+
+funny set forth herein.
+
+          100.   The Virgin Islands Legislature enacted the CICO Act with the purpose to “curtail
+
+criminal activity and lessen its economic and political power in the Territory of the Virgin Islands
+
+by establishing new penal prohibitions and providing to law enforcement and the victims of
+
+criminal activity new civil sanctions and remedies.” 14 V.I.C. § 601.
+
+          101.   At all times material herein, JP Morgan was a “person” identified in 14 V.I.C. §
+
+604(l).
+
+          102.   At all times material herein, Epstein and his co-conspirators were engaged in an
+
+illicit sex-trafficking “enterprise” as defined in 14 V.I.C. § 604(h).
+
+          103.   At all times material herein, JP Morgan supported and/or was associated with the
+
+Epstein sex-trafficking enterprise by providing banking and payment-processing services to
+
+Epstein, who resided in the Virgin Islands, and Epstein-controlled entities that were located and/or
+
+incorporated in the Virgin Islands.
+
+          104.   In providing banking and payment-processing services to Epstein and Epstein-
+
+controlled entities in return for profits realized both from Epstein’s and Epstein-controlled entities’
+
+accounts and from                                                                        , JP Morgan
+
+knowingly, intentionally, and willfully benefitted financially and by receiving things of value from
+
+its participation, directly or indirectly, in Epstein’s sex-trafficking venture and enterprise, in
+
+violation of 18 U.S.C. § 1591(a)(2).
+
+          105.   JP Morgan’s knowing, intentional, and willful receipt of financial benefits and
+
+things of value from its facilitation and participation in Epstein’s sex-trafficking venture and
+
+
+
+
+                                                  23
+
+         Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 24 of 30
+
+
+
+
+enterprise through the financial infrastructure it provided and concealed constitutes a felony under
+
+18 U.S.C. § 1591(b) and “criminal activity” as defined in 14 V.I.C. § 604(e).
+
+        106.    By knowingly, intentionally, and willfully receiving financial benefits and things
+
+of value from its participation, directly or indirectly, via financing in Epstein’s sex-trafficking
+
+venture and enterprise, JP Morgan enabled Epstein to have ready and reliable access to and use of
+
+resources with which to recruit, entice, harbor, transport, provide, obtain, and maintain young
+
+women and underage girls for purposes of causing them to engage in commercial sex acts in the
+
+Virgin Islands and elsewhere. JP Morgan thereby unlawfully conducted and/or participated in,
+
+directly or indirectly, the affairs of the Epstein sex-trafficking enterprise through a pattern of illegal
+
+activity in violation of 14 V.I.C. § 605(a).
+
+        107.    JP Morgan’s illegal activity has caused serious harm to the Virgin Islands and its
+
+residents, including without limitation financial harm, by facilitating the commission of sexual
+
+abuse against young women and underage girls, including their facilitation and participation,
+
+directly or indirectly, in commercial sex acts, in the Virgin Islands.
+
+        108.    By virtue of this pattern of illegal activity in furtherance of the Epstein sex-
+
+trafficking enterprise, JP Morgan is liable to the Government for all appropriate civil remedies
+
+under 14 V.I.C. § 607, including treble damages suffered by the Government and/or Epstein’s
+
+victims, civil penalties, restitution and/or disgorgement of ill-gotten gains, appropriate injunctive
+
+relief, attorneys’ fees and costs, and all such other relief as the Court deems appropriate.
+
+                                    COUNT THREE
+       Criminal Activity—Willfully Failing To Comply With Federal Banking Law,
+                   Violation of Bank Secrecy Act, 31 U.S.C. § 5322(a),
+  actionable under Virgin Islands Criminally Influenced and Corrupt Organizations Act,
+                              14 V.I.C. §§ 604(e) and 605(a)
+
+
+
+
+                                                   24
+
+            Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 25 of 30
+
+
+
+
+        109.    The Government restates and realleges paragraphs 1 to 108 of this Complaint as if
+
+fully set forth herein.
+
+        110.    The Virgin Islands Legislature enacted the CICO Act with the purpose to “curtail
+
+criminal activity and lessen its economic and political power in the Territory of the Virgin Islands
+
+by establishing new penal prohibitions and providing to law enforcement and the victims of
+
+criminal activity new civil sanctions and remedies.” 14 V.I.C. § 601.
+
+        111.    At all times material herein, JP Morgan was a “person” as defined in 14 V.I.C.
+
+§ 604(l).
+
+        112.    At all times material herein, Epstein and his co-conspirators were engaged in an
+
+illicit sex-trafficking “enterprise” as defined in 14 V.I.C. § 604(h).
+
+        113.    At all times material herein, JP Morgan was employed by and/or associated with
+
+the Epstein sex-trafficking enterprise by providing banking and payment-processing services to
+
+Epstein, who resided in the Virgin Islands, and Epstein-controlled entities that were located and/or
+
+incorporated in the Virgin Islands.
+
+        114.    In providing banking and payment-processing services to Epstein and Epstein-
+
+controlled entities, JP Morgan knowingly, intentionally, and willfully failed to comply with federal
+
+banking regulations in violation of 31 U.S.C. § 5322(a). From accounts maintained and served at
+
+JP Morgan,
+
+
+
+
+                                  .
+
+
+
+
+                                                  25
+
+          Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 26 of 30
+
+
+
+
+        115.    JP Morgan’s knowing, intentional, and willful failure to comply with federal
+
+banking regulations constitutes a felony under 31 U.S.C. § 5322(a) and “criminal activity” as
+
+defined in 14 V.I.C. § 604(e).
+
+        116.    By knowingly, intentionally, and willfully failing to comply with federal banking
+
+regulations, JP Morgan enabled Epstein to have ready and reliable access to and use of resources
+
+with which to recruit, entice, harbor, transport, provide, obtain, and maintain young women and
+
+underage girls for purposes of causing them to engage in commercial sex acts in the Virgin Islands
+
+and elsewhere. JP Morgan thereby unlawfully conducted and/or participated in, directly or
+
+indirectly, the affairs of the Epstein sex-trafficking enterprise through a pattern of illegal activity
+
+in violation of 14 V.I.C. § 605(a).
+
+        117.    JP Morgan’s illegal activity has caused serious harm to the Virgin Islands and its
+
+residents, including without limitation financial harm, by facilitating the commission of sexual
+
+abuse against young women and underage girls, including their engagement in commercial sex
+
+acts, in the Virgin Islands.
+
+        118.    By virtue of this pattern of illegal activity in furtherance of the Epstein sex-
+
+trafficking enterprise, JP Morgan is liable to the Government for all appropriate civil remedies
+
+under 14 V.I.C. § 607, including treble damages suffered by the Government and/or Epstein’s
+
+victims, civil penalties, restitution and/or disgorgement of ill-gotten gains, appropriate injunctive
+
+relief, attorneys’ fees and costs, and all such other relief as the Court deems appropriate.
+
+                                       COUNT FOUR
+                                Unfair Methods of Competition
+                         Violation of Virgin Islands Consumer Fraud
+                     and Deceptive Business Practices Act, 12A V.I.C. § 304
+
+        119.    The Government restates and realleges paragraphs 1 to 118 of this Complaint as if
+
+fully set forth herein.
+
+
+                                                  26
+
+           Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 27 of 30
+
+
+
+
+       120.    Section 304 of Title 12A of the Virgin Islands Code provides that “[i]t is unlawful
+
+for any person to engage in unfair methods of competition . . . in the conduct of any trade or
+
+commerce.”
+
+       121.    JP Morgan is a “person” as defined in 12A V.I.C. § 303(h).
+
+       122.    JP Morgan’s provision of banking services and payment processing for Epstein and
+
+Epstein-controlled entities constitutes “[t]rade or commerce” as defined in 12 V.I.C. § 303(k).
+
+       123.    In return for knowingly and intentionally participating in, directly or indirectly,
+
+facilitating, and concealing by failing to comply with federal banking regulations regarding
+
+Epstein-related accounts, JP Morgan both profited from the use of the funds in their accounts and
+
+received
+
+       124.    By receiving
+
+                in return for participating in, directly or indirectly, facilitating, and concealing by
+
+failing to comply with federal banking regulations regarding Epstein-related accounts, JP Morgan
+
+unlawfully and unjustly enriched itself at the expense of other banks that complied with their legal
+
+obligations. This conduct constitutes an unfair method of competition in violation of 12A V.I.C. §
+
+304.
+
+       125.    By virtue of its knowing, intentional, and repeated acts constituting unfair
+
+competition, JP Morgan is liable to the Government for all appropriate civil remedies under 12A
+
+V.I.C. §§ 328 and 332, including damages, civil penalties awarded on a per-violation basis
+
+pursuant to 12A V.I.C. § 328(b), appropriate injunctive relief, attorneys’ fees and costs, and all
+
+such other relief as the Court deems appropriate.
+
+                                    REQUEST FOR RELIEF
+
+       The Government respectfully requests that the Court enter judgment in its favor, and
+
+
+
+                                                 27
+
+        Case 1:22-cv-10904-JSR Document 1 Filed 12/27/22 Page 28 of 30
+
+
+
+
+against JP Morgan, as follows:
+
+       A.     That the Court award the Government compensatory, consequential, general, and
+
+              nominal damages, as suffered by the Government and/or Epstein’s victims, and
+
+              punitive damages, all against JP Morgan in amounts to be awarded at trial;
+
+       B.     That the Court award the Government punitive and exemplary damages against JP
+
+              Morgan in an amount to be determined at trial;
+
+       C.     That the Court order JP Morgan to pay appropriate fines to the Government
+
+              pursuant to 18 U.S.C. § 1591(b) in amounts to be determined at trial;
+
+       D.     That the Court order JP Morgan to provide restitution of all ill-gotten gains to the
+
+              Government pursuant to 18 U.S.C. § 1593 and 14 V.I.C. § 607(a)(6) and pursuant
+
+              to 14 V.I.C. § 608(c)(4) to protect the rights of victims and innocent persons in the
+
+              interest of justice and consistent with the purposes of the CICO Act, in amounts to
+
+              be determined at trial;
+
+       E.     That the Court award the Government treble damages against JP Morgan pursuant
+
+              to 14 V.I.C. § 607(c) in an amount to be determined at trial;
+
+       F.     That the Court order JP Morgan to pay appropriate civil penalties to the
+
+              Government pursuant to 14 V.I.C. § 607(e) and 12A V.I.C. § 328(b) and pursuant
+
+              to 14 V.I.C. § 608(c)(4) to protect the rights of victims and innocent persons in the
+
+              interest of justice and consistent with the purposes of the CICO Act, in amounts to
+
+              be determined at trial;
+
+       G.     That the Court enter an injunction pursuant to 14 V.I.C. § 607(a)(2) and 12A V.I.C.
+
+              § 328(a)(2) to prevent further illegal conduct and any concealment of illegal
+
+              conduct;
+
+
+
+                                               28
