@@ -98,7 +98,7 @@ plot(k_values, perplexities,
 
 # Gibbs sampler settings
 control_gibbs <- list(
-  seed   = 1234,
+  seed   = 777,
   burnin = 5000,
   iter   = 20000,
   keep   = 10      # keep the log-likelihood every 10 iterations
@@ -116,7 +116,7 @@ par(mfrow = c(1, 1), mar = c(2.75, 3, 1.5, 0.5), mgp = c(1.7, 0.7, 0))
 plot(ll[-c(1:10)], type = "p", pch = 16, col = adjustcolor(1, 0.8), cex = 1.2,
      xlab = "Iteration", ylab = "Log-likelihood")
 
-# Extract the beta matrix (word probabilities per topic)
+# Extract the beta matrix (word probabilities per topic )
 topics_beta <- tidy(lda_model, matrix = "beta")
 
 # Top 10 words per topic
