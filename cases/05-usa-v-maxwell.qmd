@@ -50,7 +50,7 @@ text <- tibble(text = raw_text) %>%
 | **Court** | U.S. District Court for the Southern District of New York |
 | **Case number** | 20 Cr. 330 |
 | **Source** | [U.S. Department of Justice](https://www.justice.gov/usao-sdny/united-states-v-ghislaine-maxwell) |
-| **Words (cleaned text)** | 3,005 |
+| **Words (cleaned text)** | 3,171 |
 | **Note** | The document was transcribed manually. |
 
 This legal document is a criminal indictment brought by the United States Government against Ghislaine Maxwell in the U.S. District Court for the Southern District of New York. The prosecution alleges that, between 1994 and 1997, the defendant assisted, facilitated, and contributed to Jeffrey Epstein's sexual exploitation and abuse of multiple minor victims, some as young as 14. According to the charges, Maxwell recruited and groomed the girls by building a relationship of trust in order to normalize the abusive conduct, encouraging them to give Epstein massages of a sexual nature, sometimes in exchange for financial or educational support, at his residences in Manhattan, Palm Beach, Santa Fe, and London. The indictment alleges the defendant's direct participation in the conspiracy and in the interstate transportation of minors for criminal purposes, and also charges her with perjury for allegedly lying under oath during depositions in 2016 in order to conceal her conduct.

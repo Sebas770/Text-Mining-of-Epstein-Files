@@ -30,13 +30,13 @@ The corpus consists of ten legal documents filed in U.S. courts between 2015 and
 | 2016-04-26 | [*Johnson v. Trump and Epstein*](cases/02-johnson-v-trump-and-epstein.qmd) | Complaint | 1,577 |
 | 2019-04-16 | [*Giuffre v. Dershowitz*](cases/03-giuffre-v-dershowitz.qmd) | Complaint | 7,201 |
 | 2019-07-02 | [*United States v. Epstein*](cases/04-usa-v-epstein.qmd) | Indictment | 2,706 |
-| 2020-06-29 | [*United States v. Maxwell*](cases/05-usa-v-maxwell.qmd) | Indictment | 3,005 |
+| 2020-06-29 | [*United States v. Maxwell*](cases/05-usa-v-maxwell.qmd) | Indictment | 3,171 |
 | 2021-08-09 | [*Giuffre v. Prince Andrew*](cases/06-giuffre-v-prince-andrew.qmd) | Complaint | 3,390 |
 | 2022-11-24 | [*Doe v. Deutsche Bank*](cases/07-doe-v-deutsche-bank.qmd) | Complaint | 23,105 |
 | 2022-11-24 | [*Doe v. JP Morgan*](cases/08-doe-v-jp-morgan.qmd) | Complaint | 16,366 |
 | 2022-11-28 | [*Pierson v. Black*](cases/09-pierson-v-black.qmd) | Complaint | 7,856 |
 | 2022-12-27 | [*Government of the USVI v. JP Morgan*](cases/10-government-v-jp-morgan.qmd) | Complaint | 6,067 |
-|  | **Total** |  | **73,827** |
+|  | **Total** |  | **73,993** |
 
 : Court filings included in the corpus. Words: number of word tokens in the cleaned text of each filing. USVI: United States Virgin Islands. {#tbl-corpus}
 
