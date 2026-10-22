@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>United States v. Maxwell – Text Mining of the Epstein Case Court Filings</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cases/01-giuffre-v-maxwell.html">Cases</a></li><li class="breadcrumb-item"><a href="../cases/05-usa-v-maxwell.html">United States v. Maxwell</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Text Mining of the Epstein Case Court Filings</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Text Mining and Linguistic Network Analysis of Court Filings in the Epstein Case</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Cases</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/01-giuffre-v-maxwell.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Giuffre v. Maxwell</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/02-johnson-v-trump-and-epstein.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Johnson v. Trump and Epstein</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/03-giuffre-v-dershowitz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Giuffre v. Dershowitz</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/04-usa-v-epstein.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">United States v. Epstein</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/05-usa-v-maxwell.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">United States v. Maxwell</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/06-giuffre-v-prince-andrew.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Giuffre v. Prince Andrew</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/07-doe-v-deutsche-bank.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Doe v. Deutsche Bank</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/08-doe-v-jp-morgan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Doe v. JP Morgan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/09-pierson-v-black.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pierson v. Black</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/10-government-v-jp-morgan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Government of the USVI v. JP Morgan</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#word-frequency" id="toc-word-frequency" class="nav-link active" data-scroll-target="#word-frequency">Word frequency</a></li>
+  <li><a href="#sentiment-analysis" id="toc-sentiment-analysis" class="nav-link" data-scroll-target="#sentiment-analysis">Sentiment analysis</a></li>
+  <li><a href="#word-relationships" id="toc-word-relationships" class="nav-link" data-scroll-target="#word-relationships">Word relationships</a></li>
+  
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cases/01-giuffre-v-maxwell.html">Cases</a></li><li class="breadcrumb-item"><a href="../cases/05-usa-v-maxwell.html">United States v. Maxwell</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">United States v. Maxwell</h1>
+<p class="subtitle lead">Federal indictment, June 2020</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Document type</strong></td>
+<td style="text-align: left;">Federal indictment</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Court</strong></td>
+<td style="text-align: left;">U.S. District Court for the Southern District of New York</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Case number</strong></td>
+<td style="text-align: left;">20 Cr. 330</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Source</strong></td>
+<td style="text-align: left;"><a href="https://www.justice.gov/usao-sdny/united-states-v-ghislaine-maxwell">U.S. Department of Justice</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Words (cleaned text)</strong></td>
+<td style="text-align: left;">3,005</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Note</strong></td>
+<td style="text-align: left;">The document was transcribed manually.</td>
+</tr>
+</tbody>
+</table>
+<p>This legal document is a criminal indictment brought by the United States Government against Ghislaine Maxwell in the U.S. District Court for the Southern District of New York. The prosecution alleges that, between 1994 and 1997, the defendant assisted, facilitated, and contributed to Jeffrey Epstein’s sexual exploitation and abuse of multiple minor victims, some as young as 14. According to the charges, Maxwell recruited and groomed the girls by building a relationship of trust in order to normalize the abusive conduct, encouraging them to give Epstein massages of a sexual nature, sometimes in exchange for financial or educational support, at his residences in Manhattan, Palm Beach, Santa Fe, and London. The indictment alleges the defendant’s direct participation in the conspiracy and in the interstate transportation of minors for criminal purposes, and also charges her with perjury for allegedly lying under oath during depositions in 2016 in order to conceal her conduct.</p>
+<section id="word-frequency" class="level2">
+<h2 class="anchored" data-anchor-id="word-frequency">Word frequency</h2>
+<p><a href="#fig-freq-usa-v-maxwell" class="quarto-xref">Figure&nbsp;1</a> shows the most frequent terms in the text. First, the term “minor” has a relative frequency of 7.4%, a considerably high percentage for this type of analysis. As the most frequent word, it shows that the age of the alleged victims is one of the central axes of the indictment, carrying great weight throughout the case. This is complemented by the next most frequent word, “victim”, which confirms the constant reference to those affected. The following terms refer directly to the two alleged perpetrators, “Maxwell” and “Epstein”, including variants related to their first names or to her status as defendant, which confirms their role as main actors given their high frequency. Finally, concepts linked to the legal definition of the offenses, the modus operandi, and the places associated with the events stand out.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-freq-usa-v-maxwell" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-freq-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-usa-v-maxwell_files/figure-html/fig-freq-usa-v-maxwell-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-freq-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Bar chart: United States v. Maxwell.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The word cloud in <a href="#fig-wordcloud-usa-v-maxwell" class="quarto-xref">Figure&nbsp;2</a> shows no new terms compared with the bar chart. That is, beyond the terms already discussed, there are no additional concepts of significant relevance to the analysis of the case. This corroborates the previous observations and confirms a marked difference between these central terms and the rest, showing that the main words dominate the text, since no other words have similar frequencies.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-wordcloud-usa-v-maxwell" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wordcloud-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-usa-v-maxwell_files/figure-html/fig-wordcloud-usa-v-maxwell-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wordcloud-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Word cloud: United States v. Maxwell.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The frequency analysis shows that the text revolves markedly around a small core of highly recurrent terms, whose use is much higher than that of the rest of the vocabulary. It also identifies the centrality of the age of the alleged victims, with the term referring to their minority being the most frequent in the document. Finally, there are three main groups of words that appear repeatedly throughout the case: those referring to the victims, to the alleged perpetrators, and to the nature of the alleged crimes.</p>
+</section>
+<section id="sentiment-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="sentiment-analysis">Sentiment analysis</h2>
+<p><a href="#fig-sentiment-usa-v-maxwell" class="quarto-xref">Figure&nbsp;3</a> shows that the term “victim” has a disproportionate score compared with the other terms. This implies that both the negative sentiment and the overall tone of the text are characterized by the recurrence and weight of this word. Moreover, most of the predominant concepts, such as “abuse”, “conspiracy”, “victims”, “criminal”, and “perjury”, refer directly to the accounts of the alleged victims and to the charges. It can therefore be inferred that the negative sentiment of the case is directly linked to the vulnerability and experiences of the victims described in the criminal proceedings.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sentiment-usa-v-maxwell" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sentiment-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-usa-v-maxwell_files/figure-html/fig-sentiment-usa-v-maxwell-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sentiment-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Bar chart of sentiment scores: United States v. Maxwell.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Positive sentiment consists of four terms, two of which refer to institutional and legal entities: “grand” and “united” (associated with the grand jury and the United States). These terms therefore have no real positive connotation in the context of the document. The other two words, “encouraged” and “engage”, refer directly to the methods allegedly used to recruit new victims. Consequently, a genuinely positive emotional charge in the text is ruled out, since these terms appear because of legal formalities or the description of the alleged modus operandi, elements that do not evoke that emotion.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-emotions-usa-v-maxwell" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-emotions-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-usa-v-maxwell_files/figure-html/fig-emotions-usa-v-maxwell-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-emotions-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Pie chart of emotions: United States v. Maxwell.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The pie chart of emotions in <a href="#fig-emotions-usa-v-maxwell" class="quarto-xref">Figure&nbsp;4</a> shows that the predominant emotions, which account for almost 75% of the words, are anger, fear, and sadness. These emotions reflect the impact and weight of the accounts of systematic and prolonged abuse over the years; according to the indictment, this was not a matter of isolated assaults, but of a complex and structured recruitment scheme. This is confirmed by the low presence of joy, whose low frequency accentuates the contrast with the previous categories and shows that the overall tone of the document evokes mostly negative emotions.</p>
+<p>This analysis shows that both positive sentiment and the emotions related to it, such as joy, are very weak, being clearly outweighed by a generalized negative sentiment and by the emotional states related to it. The terms referring to the victims and their experiences are the ones that give most of the text its negative tone. Moreover, the words initially classified as positive do not refer to positive elements in the actual context of the indictment, which confirms the absence of genuinely positive components in the document.</p>
+</section>
+<section id="word-relationships" class="level2">
+<h2 class="anchored" data-anchor-id="word-relationships">Word relationships</h2>
+<p>The bigram network was built from the bigrams with a frequency of at least 3, in order to obtain an informative network rather than a noisy one, thus keeping the most relevant information in the text. The analysis uses the largest connected component of the graph, since it concentrates the most relevant information.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bigram-usa-v-maxwell" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bigram-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-usa-v-maxwell_files/figure-html/fig-bigram-usa-v-maxwell-1.png" class="img-fluid figure-img" width="1344">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bigram-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Largest connected component of the bigram network, without and with vertex strength: United States v. Maxwell.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-bigram-usa-v-maxwell" class="quarto-xref">Figure&nbsp;5</a> shows that the vertices with the highest strength are “victim” and “minor”, and the edge connecting them has the highest weight in the whole network. This pair is clearly central and important in the text. The term that connects “Maxwell” with “minor” is “encouraged”, a key link that illustrates the alleged process of recruiting minors and the type of conduct to which they were allegedly subjected, seen in the graph through connections such as “sexual encounters” and “sexual activity”. Finally, the pair “multiple occasions” stands out, which reflects the allegedly repeated and systematic nature of the abuse suffered by the victims, in which the defendant appears as a main actor.</p>
+<p>The bigram network shows that two vertices concentrate a much greater strength than the rest of the graph. The analysis also helps to understand the nature of Maxwell’s alleged relationship with the victims and how the two parties interacted. Finally, the absence of Epstein from the network is striking, which suggests that the central theme of the indictment revolves around Maxwell and her alleged participation in the offenses described; Epstein is thus a crucial actor for the context, but secondary when the events and their relationship with the actors of the network are set out.</p>
+<p>The skipgram network is built with all pairs, regardless of their frequency, which makes it possible to find semantic relationships that are not perceptible at first sight. The largest connected component is also used, since it contains the most important information and allows the computation of statistics that are not defined on a disconnected graph, such as the mean distance between vertices.</p>
+<div class="cell">
+<div id="tbl-skipgrams-usa-v-maxwell" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-skipgrams-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Word 1</th>
+<th style="text-align: left;">Word 2</th>
+<th style="text-align: right;">Freq.</th>
+<th style="text-align: right;">Rel. freq.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Minor</td>
+<td style="text-align: left;">Victim</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">6.93%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Minor</td>
+<td style="text-align: left;">Victims</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">1.69%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ghislaine</td>
+<td style="text-align: left;">Maxwell</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">1.42%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Maxwell</td>
+<td style="text-align: left;">Defendant</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">1.42%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Jeffrey</td>
+<td style="text-align: left;">Epstein</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1.07%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Maxwell</td>
+<td style="text-align: left;">Minor</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1.07%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maxwell</td>
+<td style="text-align: left;">Epstein</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.98%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sexual</td>
+<td style="text-align: left;">Activity</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.89%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Southern</td>
+<td style="text-align: left;">District</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.89%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Title</td>
+<td style="text-align: left;">United</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.89%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-skipgrams-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Skipgram frequencies: United States v. Maxwell.
+</figcaption>
+</figure>
+</div>
+</div>
+<p><a href="#tbl-skipgrams-usa-v-maxwell" class="quarto-xref">Table&nbsp;1</a> presents the most frequent skipgrams. Strikingly, the first skipgram has a much higher relative frequency than the rest, close to 7%, while the remaining pairs are around 1%. This shows the importance of the association between “victim” and “minor” in the text, a pattern confirmed by the second most frequent skipgram, which repeats it with the plural form. The following associations refer directly to the alleged perpetrators and to their interaction, notably “Maxwell minor” and “Maxwell Epstein”, which suggests that, although no skipgram among the top positions directly links Epstein with the victims, there is a connection mediated by Maxwell. Finally, the pair “sexual activity” stands out, showing the intrinsic nature of the alleged offenses.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="tbl-skip-stats-usa-v-maxwell" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-skip-stats-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Statistic</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean distance</td>
+<td style="text-align: right;">5.64</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mean degree</td>
+<td style="text-align: right;">4.25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SD of degree</td>
+<td style="text-align: right;">6.47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clique number</td>
+<td style="text-align: right;">5.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Density</td>
+<td style="text-align: right;">0.02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Transitivity</td>
+<td style="text-align: right;">0.13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Assortativity</td>
+<td style="text-align: right;">-0.14</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-skip-stats-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Statistics of the largest connected component of the skipgram network: United States v. Maxwell.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="tbl-eigen-usa-v-maxwell" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-eigen-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Word</th>
+<th style="text-align: right;">Centrality</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Minor</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Victim</td>
+<td style="text-align: right;">0.95</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maxwell</td>
+<td style="text-align: right;">0.26</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Victims</td>
+<td style="text-align: right;">0.24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Encouraged</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Epstein</td>
+<td style="text-align: right;">0.14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Abuse</td>
+<td style="text-align: right;">0.12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Defendant</td>
+<td style="text-align: right;">0.07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Provided</td>
+<td style="text-align: right;">0.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ghislaine</td>
+<td style="text-align: right;">0.06</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-eigen-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Eigenvector centrality in the largest connected component of the skipgram network: United States v. Maxwell.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p><a href="#tbl-skip-stats-usa-v-maxwell" class="quarto-xref">Table&nbsp;2</a> shows that the mean distance of the network is 5.64; that is, on average, more than five steps are needed to go from one word to another. Being a moderate value, it suggests a less centralized narrative, in which the different concepts and actors are connected more gradually throughout the text. This interconnection is supported by the mean degree of 4.25, meaning that each word is directly connected to slightly more than four different terms on average. However, the standard deviation of the degree is high (6.47) compared with its mean, which reveals great variability: a few words are connected to many others, while most have very few connections. In other words, there are hub words that appear next to many different terms, which points to very marked themes in the text.</p>
+<p>Regarding the grouping of words, the clique number is 5, meaning that the largest group of words that are all connected to each other has 5 terms; such a structure usually reflects a frequently repeated central argument or words that always appear together. At the global level, however, the density of the network is 0.02, meaning that only 2% of all possible connections are present; the network is therefore very sparse, as is usual in word networks with a large and varied vocabulary. Consistently with this sparsity, the transitivity is 0.13, so there is only a 13% probability that two words connected to the same term are also connected to each other (forming triangles), which reflects a structure with low cohesion. Finally, the degree assortativity is negative (-0.14), indicating a mild tendency of highly connected words to link with words that have few connections, rather than with other central words.</p>
+<p><a href="#tbl-eigen-usa-v-maxwell" class="quarto-xref">Table&nbsp;3</a> shows the most important words in the text according to eigenvector centrality. Notably, the first terms, “minor” and “victim”, have much higher values than all the other words, which shows that they act as the central axis of the whole document and that the rest of the vocabulary is organized around them. The next most relevant terms refer to the main actors, such as Maxwell, Epstein, and the victims, and to the relationships among them; this is reflected in words such as “abuse”, which refers to the alleged criminal link between the victims and Epstein; “encouraged”, which describes Maxwell’s alleged role in recruiting the minors; and “provided”, which describes the alleged logistical and operational cooperation between Maxwell and Epstein.</p>
+<div class="cell">
+<div id="tbl-clusters-usa-v-maxwell" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-clusters-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Cluster</th>
+<th style="text-align: center;">Size</th>
+<th style="text-align: left;">Word</th>
+<th style="text-align: right;">Strength</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">34</td>
+<td style="text-align: left;">York</td>
+<td style="text-align: right;">27</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">United</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Section</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: left;">Knowingly</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Entice</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">57</td>
+<td style="text-align: left;">Maxwell</td>
+<td style="text-align: right;">136</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Epstein</td>
+<td style="text-align: right;">114</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Jeffrey</td>
+<td style="text-align: right;">36</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: left;">Sexual</td>
+<td style="text-align: right;">52</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Acts</td>
+<td style="text-align: right;">31</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Engage</td>
+<td style="text-align: right;">26</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: left;">Minor</td>
+<td style="text-align: right;">191</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Victim</td>
+<td style="text-align: right;">121</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Victims</td>
+<td style="text-align: right;">51</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-clusters-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: Vertices with the highest strength in the five largest clusters: United States v. Maxwell.
+</figcaption>
+</figure>
+</div>
+</div>
+<p><a href="#tbl-clusters-usa-v-maxwell" class="quarto-xref">Table&nbsp;4</a> presents the words with the highest strength in the five largest clusters obtained with the fast greedy algorithm. The largest cluster is characterized by the terms “Maxwell”, “Epstein”, and “Jeffrey”, which shows that these two people are almost intrinsically related in the indictment and that its main thematic axes revolve around them. Cluster 5 refers directly to the alleged criminal conduct related to the abuse and the sexual exploitation network, while cluster 2 refers to the offenses related to lying under oath. Cluster 7 groups the terms closely linked to the victims and their vulnerability. Finally, cluster 1 concentrates the legal terminology used throughout the indictment.</p>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="additional-figures" class="level2 appendix"><h2 class="anchored quarto-appendix-heading">Additional figures</h2><div class="quarto-appendix-contents">
+
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sentiment-cloud-usa-v-maxwell" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sentiment-cloud-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-usa-v-maxwell_files/figure-html/fig-sentiment-cloud-usa-v-maxwell-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sentiment-cloud-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Word cloud with sentiment charge: United States v. Maxwell.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-skipgram-usa-v-maxwell" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-skipgram-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-usa-v-maxwell_files/figure-html/fig-skipgram-usa-v-maxwell-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-skipgram-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Largest connected component of the skipgram network: United States v. Maxwell.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-clustering-usa-v-maxwell" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-clustering-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-usa-v-maxwell_files/figure-html/fig-clustering-usa-v-maxwell-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clustering-usa-v-maxwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Clustering of the largest connected component of the skipgram network: United States v. Maxwell.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,28 @@
+project:
+  type: website
+  output-dir: docs
+  execute-dir: project
+  render:
+    - index.qmd
+    - cases/*.qmd
+
+website:
+  title: "Text Mining of the Epstein Case Court Filings"
+  sidebar:
+    contents:
+      - index.qmd
+      - section: "Cases"
+        contents: "cases/*.qmd"
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    fig-cap-location: bottom
+    tbl-cap-location: bottom
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto

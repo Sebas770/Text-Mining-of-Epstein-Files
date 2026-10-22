@@ -1,0 +1,464 @@
+---
+title: "United States v. Epstein"
+subtitle: "Federal indictment filed on July 2, 2019"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(tidytext)
+library(magrittr)
+library(scales)
+library(wordcloud)
+library(RColorBrewer)
+library(reshape2)
+library(igraph)
+library(ggraph)
+library(tidygraph)
+library(knitr)
+
+data(stop_words)
+
+# Path relative to the project root (execute-dir: project in _quarto.yml)
+raw_text <- read_file(
+  "Data-Analysis/2019-07-02-USA-v.-Epstein/2019-07-02-Indictment-USA-v.-Epstein-C.txt"
+)
+
+# Capitalize the first letter and use straight apostrophes (for tables)
+cap <- function(x) {
+  x <- gsub("\u2019", "'", x)
+  x <- paste0(toupper(substr(x, 1, 1)), substring(x, 2))
+  # Acronyms in upper case
+  acr <- tolower(x) %in% c("jp", "aml", "bbc", "usvi")
+  x[acr] <- toupper(x[acr])
+  x
+}
+
+# Tokenization, removal of tokens with numbers and of stop words
+text <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = word) %>%
+  filter(!is.na(word)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word)) %>%
+  anti_join(stop_words, by = "word")
+```
+
+| | |
+|:--|:--|
+| **Document type** | Federal indictment |
+| **Court** | U.S. District Court for the Southern District of New York |
+| **Case number** | 19 Cr. 490 |
+| **Source** | [U.S. Department of Justice](https://www.justice.gov/usao-sdny/programs/victim-witness-services/united-states-v-jeffrey-epstein-19-cr-490-rmb) |
+| **Words (cleaned text)** | 2,706 |
+
+This legal document is a criminal indictment brought by the United States Government against Jeffrey Epstein in the U.S. District Court for the Southern District of New York. The prosecution alleges that, between 2002 and 2005, the defendant led a conspiracy to engage in the sex trafficking of minors, exploiting dozens of girls at his residences in Manhattan and Palm Beach. According to the charges, Epstein recruited the victims under the pretext of massages that then turned into sexual abuse, paying them hundreds of dollars in cash and giving them financial incentives to recruit other minors in vulnerable situations. The indictment alleges the active participation of employees and associates in scheduling and facilitating these encounters, and concludes by seeking the forfeiture of property linked to the alleged crimes. The case did not go to trial, as the defendant died in federal custody in August 2019.
+
+## Word frequency
+
+@fig-freq-usa-v-epstein presents the most frequent terms. Overall, no term has a high relative frequency; however, the most frequent word, "Epstein", appears almost twice as often as the next one. From this, it can be inferred that the narrative of the document and most of its thematic axes revolve around him, a centrality reinforced by the recurrence of associated words such as "defendant" and "Jeffrey". Highly frequent words such as "victims", "victim", and "minor" also stand out, showing a recurring theme in the indictment. In relation to these actors, there are concepts that describe the conduct under investigation, such as "sex", "paid", "hundreds", "dollars", "acts", and "engage". Finally, there is a set of terms referring directly to the places and institutions involved in the proceedings, including "Palm", "Beach", "York", "residence", and "United".
+
+```{r}
+#| label: fig-freq-usa-v-epstein
+#| fig-cap: "Bar chart: United States v. Epstein."
+#| fig-width: 8
+#| fig-height: 6
+
+text %>%
+  count(word, sort = TRUE) %>%
+  mutate(
+    percent = (n / sum(n)) * 100,
+    label   = paste0(n, " (", round(percent, 2), "%)"),
+    word    = reorder(word, n)
+  ) %>%
+  slice_max(n, n = 20, with_ties = FALSE) %>%
+  ggplot(aes(x = word, y = n)) +
+  geom_segment(aes(xend = word, yend = 0), color = "gray80", linewidth = 0.8) +
+  geom_point(color = "#C0392B", size = 3.5) +
+  geom_text(aes(label = label), hjust = -0.15, size = 3.5, color = "gray20") +
+  coord_flip() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(x = NULL, y = "Frequency") +
+  theme_minimal() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.y = element_text(size = 11, color = "black"),
+    axis.text.x = element_text(color = "gray40")
+  )
+```
+
+@fig-wordcloud-usa-v-epstein confirms the behavior discussed above, with Epstein as the central actor around whom the thematic axes of the document converge. In addition, a key term emerges, "recruited", which connects words such as "victims" and "paid". This concept helps to understand the structure and operation of the alleged trafficking network: according to the indictment, it operated through a scheme in which the initial victims were paid and encouraged to recruit new girls, extending the money to more minors in vulnerable situations and thus perpetuating the abuse.
+
+```{r}
+#| label: fig-wordcloud-usa-v-epstein
+#| fig-cap: "Word cloud: United States v. Epstein."
+#| fig-width: 6
+#| fig-height: 6
+
+set.seed(123)
+text %>%
+  count(word, sort = TRUE) %>%
+  with(wordcloud(
+    words = word,
+    freq  = n,
+    max.words = 20,
+    ordered.colors = FALSE,
+    colors = brewer.pal(9, "Greys")[7:9],
+    scale  = c(3.5, 0.6)
+  ))
+```
+
+The word frequency analysis reveals several thematic axes in the document. The first groups terms that refer directly to the victims, to the relationships among them, and to the nature of the abuse they allegedly suffered. There is also a set of terms describing the places where the alleged events took place, followed by a category that describes how the trafficking network allegedly led by Epstein operated and how its different actors interacted. Finally, it is very clear that the central and most frequently mentioned actor throughout the text is Epstein.
+
+## Sentiment analysis
+
+@fig-sentiment-usa-v-epstein shows that the two words with the highest negative charge are "victims" and "victim", which shows that the negative sentiment is strongly characterized by the elements surrounding those affected in the case. They are followed by the terms "abused" and "abuse", whose presence confirms that the negative charge is concentrated on the acts and abuse allegedly inflicted on these people. Terms such as "conspiracy" and "exploit" also appear, which refer directly to the criminal conduct associated with the operation of the trafficking network allegedly led by Epstein.
+
+```{r}
+#| label: fig-sentiment-usa-v-epstein
+#| fig-cap: "Bar chart of sentiment scores: United States v. Epstein."
+#| fig-width: 8
+#| fig-height: 6
+
+afinn <- get_sentiments("afinn")
+
+text %>%
+  inner_join(afinn, by = "word") %>%
+  count(word, value, sort = TRUE) %>%
+  mutate(score = n * value) %>%
+  filter(abs(score) > 2) %>%
+  mutate(sentiment = ifelse(value > 0, "Positive", "Negative")) %>%
+  mutate(word = reorder(word, score)) %>%
+  ggplot(aes(word, score, fill = sentiment)) +
+  geom_col(width = 0.7) +
+  coord_flip() +
+  scale_fill_manual(
+    name   = "Sentiment",
+    values = c("Negative" = "#d73027", "Positive" = "#4575b4")
+  ) +
+  scale_y_continuous(breaks = pretty_breaks(n = 10)) +
+  labs(y = "Score", x = NULL) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.y = element_text(face = "plain", color = "black", size = 11),
+    legend.position = "bottom"
+  )
+```
+
+Positive sentiment has few terms, which indicates its minimal presence throughout the text; moreover, these are terms that, in this context, may not genuinely evoke that sentiment. Words such as "engage" and "encouraged" refer to the dynamics of the alleged scheme, in which victims were encouraged to engage in sexual acts and to recruit others. The terms "grand" and "united", in turn, refer to the grand jury and to the United States, so they carry no positive affective connotation, since they only refer to institutions. This shows how certain terms classified as positive lose that meaning when evaluated in a strictly legal context.
+
+```{r}
+#| label: fig-emotions-usa-v-epstein
+#| fig-cap: "Pie chart of emotions: United States v. Epstein."
+#| fig-width: 7
+#| fig-height: 6
+
+nrc <- get_sentiments("nrc")
+
+emotions <- text %>%
+  inner_join(nrc, by = "word", relationship = "many-to-many") %>%
+  filter(!sentiment %in% c("negative", "positive")) %>%
+  count(sentiment) %>%
+  mutate(
+    percent   = (n / sum(n)) * 100,
+    sentiment = str_to_title(sentiment),
+    label     = ifelse(percent > 2, paste0(round(percent, 1), "%"), "")
+  )
+
+pastel_colors <- c(
+  "Anger"        = "#FF9999",
+  "Sadness"      = "#4A90E2",
+  "Joy"          = "#FDFD96",
+  "Fear"         = "#CDB4DB",
+  "Disgust"      = "#66CC66",
+  "Anticipation" = "#FFB347",
+  "Surprise"     = "#FFD1DC",
+  "Trust"        = "#AEEEEE"
+)
+
+ggplot(emotions, aes(x = "", y = percent, fill = sentiment)) +
+  geom_bar(stat = "identity", width = 1, color = "white") +
+  coord_polar("y", start = 0) +
+  geom_text(
+    aes(x = 1.25, label = label),
+    position = position_stack(vjust = 0.5),
+    size = 4.5, fontface = "bold", color = "gray20"
+  ) +
+  scale_fill_manual(values = pastel_colors, name = "Emotions") +
+  theme_void()
+```
+
+@fig-emotions-usa-v-epstein presents the emotions identified in the text, showing that three of the predominant emotions are anger, fear, and sadness. Given the crudeness of the events described and their implications, it is to be expected that the text evokes the emotional state experienced by the victims of these events. Another category with a significant presence is trust, which can be attributed to the recurring mention of legal institutions and procedural figures that evoke this emotion. By contrast, disgust is among the least represented emotions, suggesting that the document avoids lurid details or explicit terms when describing the abuse.
+
+The sentiment analysis shows that the text has an almost entirely negative charge, dominated by emotions such as anger, fear, and sadness. The terms that evoke these emotions are directly related to the victims, the alleged offenses, and the events surrounding the trafficking network. Despite this clearly negative tone, the few positive terms do not reflect a genuinely positive sentiment, as they refer to institutions or to the dynamics of the alleged scheme.
+
+## Word relationships
+
+The bigram network was built from the bigrams with a frequency of at least 3, in order to obtain an informative network rather than a noisy one, thus keeping the most relevant information in the text. The analysis uses the largest connected component of the graph, since it concentrates the most relevant information.
+
+```{r}
+#| label: fig-bigram-usa-v-epstein
+#| fig-cap: "Largest connected component of the bigram network, without and with vertex strength: United States v. Epstein."
+#| fig-width: 14
+#| fig-height: 7
+
+text_bi_counts <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = bigram, token = "ngrams", n = 2) %>%
+  filter(!is.na(bigram)) %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!grepl(pattern = "[0-9]", x = word1)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word2)) %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word) %>%
+  filter(!is.na(word1), !is.na(word2)) %>%
+  count(word1, word2, sort = TRUE) %>%
+  rename(weight = n)
+
+# Bigrams that appear 3 or more times
+g <- text_bi_counts %>%
+  filter(weight > 2) %>%
+  graph_from_data_frame(directed = FALSE)
+
+V(g)$cluster <- components(graph = g)$membership
+gcc <- induced_subgraph(
+  graph = g,
+  vids  = which(V(g)$cluster == which.max(components(graph = g)$csize))
+)
+
+par(mfrow = c(1, 2), mar = c(1, 1, 2, 1), mgp = c(1, 1, 1))
+
+set.seed(12)
+plot(
+  gcc,
+  layout = layout_with_lgl,
+  vertex.color = 1,
+  vertex.frame.color = 1,
+  vertex.size = 3,
+  vertex.label.color = "black",
+  vertex.label.cex = 0.9,
+  vertex.label.dist = 1
+)
+
+set.seed(12)
+plot(
+  gcc,
+  layout = layout_with_lgl,
+  vertex.color = adjustcolor("darkolivegreen4", 0.1),
+  vertex.frame.color = "darkolivegreen4",
+  vertex.size = 0.8 * strength(gcc),
+  vertex.label.color = "black",
+  vertex.label.cex = 0.9,
+  vertex.label.dist = 1,
+  edge.width = 3 * E(gcc)$weight / max(E(gcc)$weight)
+)
+```
+
+@fig-bigram-usa-v-epstein shows that the vertices with the highest strength are "minor", "sex", and "Epstein", around which the main thematic axes converge. The first one covers everything related to the minors who were allegedly victimized, including how they were recruited. A second axis is linked to sexual conduct, describing the dynamics of the alleged trafficking, its commercial nature, and the payment scheme. Finally, there are the actions and properties directly linked to Epstein, such as his Palm Beach residence, the scheduled encounters, and the payments made to the victims.
+
+The bigram network analysis identifies three vertices of great importance because of their high strength, which are the axes around which the most relevant themes and actors of the case converge. These elements can be organized into three broad categories: the minor victims, Epstein, and the conduct linked to sexual offenses. This structure clarifies the internal organization of the document and shows that one of its fundamental aims is to set out concisely how the alleged abuse scheme operated, the identity of the alleged perpetrator, and the profile of the victims and the harm they suffered.
+
+The skipgram network is built with all pairs, regardless of their frequency, which makes it possible to find semantic relationships that are not perceptible at first sight. The largest connected component is also used, since it contains the most important information and allows the computation of statistics that are not defined on a disconnected graph, such as the mean distance between vertices.
+
+```{r}
+#| label: tbl-skipgrams-usa-v-epstein
+#| tbl-cap: "Skipgram frequencies: United States v. Epstein."
+
+text_skip_counts <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = skipgram, token = "skip_ngrams", n = 2) %>%
+  filter(!is.na(skipgram)) %>%
+  # Keep only pairs (remove unigrams)
+  filter(str_count(skipgram, "\\S+") == 2) %>%
+  separate(skipgram, c("word1", "word2"), sep = " ") %>%
+  filter(!grepl(pattern = "[0-9]", x = word1)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word2)) %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word) %>%
+  filter(!is.na(word1), !is.na(word2)) %>%
+  count(word1, word2, sort = TRUE) %>%
+  mutate(rel_freq = round((n / sum(n)) * 100, 2)) %>%
+  rename(weight = n)
+
+text_skip_counts %>%
+  head(n = 10) %>%
+  transmute(
+    `Word 1`     = cap(word1),
+    `Word 2`     = cap(word2),
+    `Freq.`      = weight,
+    `Rel. freq.` = paste0(format(rel_freq, nsmall = 2), "%")
+  ) %>%
+  kable(align = "llrr")
+
+# Network and largest connected component (used in the tables and figures below)
+g <- text_skip_counts %>%
+  filter(weight > 0) %>%
+  graph_from_data_frame(directed = FALSE)
+g <- igraph::simplify(g)
+
+V(g)$cluster <- components(graph = g)$membership
+gcc <- induced_subgraph(
+  graph = g,
+  vids  = which(V(g)$cluster == which.max(components(graph = g)$csize))
+)
+```
+
+@tbl-skipgrams-usa-v-epstein presents the most repeated skipgrams in the text. The relative frequency shows that no pair of words is dominant. However, the first two combinations refer directly to the defendant as one of the central actors of the document. The third most frequent skipgram refers to the minor victims; this is relevant because it shows that the term "victim" tends to appear almost exclusively together with the term "minor". This systematic co-occurrence is a strong indication that most of the alleged victims were minors. Finally, the places where the alleged events took place stand out, which may be directly related to the indictment's request for the forfeiture of these properties.
+
+::: {layout-ncol=2}
+
+```{r}
+#| label: tbl-skip-stats-usa-v-epstein
+#| tbl-cap: "Statistics of the largest connected component of the skipgram network: United States v. Epstein."
+
+tibble(
+  Statistic = c(
+    "Mean distance", "Mean degree", "SD of degree",
+    "Clique number", "Density", "Transitivity", "Assortativity"
+  ),
+  Value = c(
+    mean_distance(gcc),
+    mean(degree(gcc)),
+    sd(degree(gcc)),
+    clique_num(gcc),
+    edge_density(gcc),
+    transitivity(gcc),
+    assortativity_degree(gcc)
+  )
+) %>%
+  kable(digits = 2, align = "lr")
+```
+
+```{r}
+#| label: tbl-eigen-usa-v-epstein
+#| tbl-cap: "Eigenvector centrality in the largest connected component of the skipgram network: United States v. Epstein."
+
+tibble(
+  Word       = cap(V(gcc)$name),
+  Centrality = eigen_centrality(gcc)$vector
+) %>%
+  arrange(desc(Centrality)) %>%
+  slice_head(n = 10) %>%
+  kable(digits = 2, align = "lr")
+```
+
+:::
+
+@tbl-skip-stats-usa-v-epstein shows that the mean distance of the network is 5.82; that is, on average, almost six steps are needed to go from one word to another. Being a moderate value, it suggests a less centralized narrative, in which the different concepts and actors are connected more gradually throughout the text. This interconnection is supported by the mean degree of 3.86, meaning that each word is directly connected to almost four different terms on average. However, the standard deviation of the degree is also high (5.22) compared with its mean, which reveals great variability: a few words are connected to many others, while most have very few connections. In other words, there are hub words that appear next to many different terms, which points to very marked themes in the text.
+
+Regarding the grouping of words, the clique number is 5, meaning that the largest group of words that are all connected to each other has 5 terms; such a structure usually reflects a frequently repeated central argument or words that always appear together. At the global level, however, the density of the network is 0.01, meaning that only 1% of all possible connections are present; the network is therefore very sparse, as is usual in word networks with a large and varied vocabulary. Consistently with this sparsity, the transitivity is 0.13, so there is only a 13% probability that two words connected to the same term are also connected to each other (forming triangles), which reflects a structure with low cohesion. Finally, the degree assortativity is negative (-0.05), indicating a very weak tendency of highly connected words to link with words that have few connections, rather than with other central words.
+
+@tbl-eigen-usa-v-epstein shows the most important words according to eigenvector centrality. The three terms with the highest scores refer directly to the defendant, while the next three refer to the alleged offenses. This confirms that Epstein is the central actor that links the different thematic axes throughout the document. It also confirms that one of the main threads of the text is the alleged unlawful acts and, in particular, the operational structure of the alleged sex trafficking network. To a lesser extent, there are terms related to places and properties linked to the defendant. Finally, the terms "victims" and "minor" stand out, reinforcing the finding that most of the alleged victims were minors.
+
+```{r}
+#| label: tbl-clusters-usa-v-epstein
+#| tbl-cap: "Vertices with the highest strength in the five largest clusters: United States v. Epstein."
+
+# Clustering (fast greedy algorithm)
+set.seed(123)
+kc <- cluster_fast_greedy(gcc)
+
+cluster_data <- tibble(
+  Word     = V(gcc)$name,
+  Cluster  = membership(kc),
+  Strength = strength(gcc)
+)
+
+cluster_data %>%
+  group_by(Cluster) %>%
+  mutate(Size = n()) %>%
+  ungroup() %>%
+  arrange(desc(Size)) %>%
+  filter(Cluster %in% head(unique(Cluster), 5)) %>%
+  group_by(Cluster) %>%
+  arrange(desc(Strength), .by_group = TRUE) %>%
+  slice_head(n = 3) %>%
+  mutate(
+    Word    = cap(Word),
+    Size    = ifelse(row_number() == 1, as.character(Size), ""),
+    Cluster = ifelse(row_number() == 1, as.character(Cluster), "")
+  ) %>%
+  ungroup() %>%
+  select(Cluster, Size, Word, Strength) %>%
+  kable(digits = 0, align = "cclr")
+```
+
+@tbl-clusters-usa-v-epstein presents the words with the highest strength in the five largest clusters obtained with the fast greedy algorithm. The largest cluster is characterized by the terms "minor", "victims", and "victim", which confirms the previous finding that most of the alleged victims were minors. Clusters 5 and 6 are directly linked to Epstein and to the places where the alleged events took place, properties whose forfeiture is sought in these proceedings. Cluster 3 introduces terms such as "employee" and "phone", which bring a new perspective, referring to the employees who allegedly assisted in the scheme and to the means of communication they used. Finally, cluster 2 contains legal terms, through which the alleged offenses are expressed formally and with a legal basis.
+
+## Additional figures {.appendix}
+
+```{r}
+#| label: fig-sentiment-cloud-usa-v-epstein
+#| fig-cap: "Word cloud with sentiment charge: United States v. Epstein."
+#| fig-width: 7
+#| fig-height: 7
+
+set.seed(123)
+text %>%
+  inner_join(afinn, by = "word") %>%
+  count(word, value, sort = TRUE) %>%
+  mutate(sentiment = ifelse(value > 0, "Positive", "Negative")) %>%
+  mutate(impact = n * abs(value)) %>%
+  acast(word ~ sentiment, value.var = "impact", fill = 0) %>%
+  comparison.cloud(
+    colors     = c("firebrick", "steelblue"),   # Negative, Positive
+    max.words  = 50,
+    title.size = 1.5
+  )
+```
+
+```{r}
+#| label: fig-skipgram-usa-v-epstein
+#| fig-cap: "Largest connected component of the skipgram network: United States v. Epstein."
+#| fig-width: 7
+#| fig-height: 7
+
+set.seed(123)
+ggraph(gcc, layout = "linear", circular = TRUE) +
+  geom_edge_arc(aes(edge_width = weight, edge_alpha = weight),
+                color = "darkolivegreen4", show.legend = FALSE) +
+  geom_node_point(aes(size = strength(gcc)), color = "gray20",
+                  alpha = 0.8, show.legend = FALSE) +
+  scale_edge_width_continuous(range = c(0.2, 1.5)) +
+  scale_edge_alpha_continuous(range = c(0.1, 0.5)) +
+  scale_size_continuous(range = c(1, 4)) +
+  theme_void() +
+  coord_fixed()
+```
+
+```{r}
+#| label: fig-clustering-usa-v-epstein
+#| fig-cap: "Clustering of the largest connected component of the skipgram network: United States v. Epstein."
+#| fig-width: 7
+#| fig-height: 7
+
+cols <- c(
+  brewer.pal(9, "Set1")[1:9],
+  brewer.pal(8, "Set2")[1:7],
+  brewer.pal(8, "Set2")[1:7],
+  brewer.pal(12, "Set3")[1:3]
+)
+# Recycle the palette if there are more clusters than colors
+cols <- rep_len(cols, max(length(cols), length(kc)))
+
+gcc_tidy <- as_tbl_graph(gcc) %>%
+  activate(nodes) %>%
+  mutate(
+    strength  = strength(gcc),
+    community = as.factor(membership(kc))
+  ) %>%
+  arrange(community)
+
+set.seed(123)
+ggraph(gcc_tidy, layout = "linear", circular = TRUE) +
+  geom_edge_arc(aes(edge_alpha = weight, edge_width = weight),
+                color = "gray70", show.legend = FALSE) +
+  geom_node_point(aes(color = community, size = strength), show.legend = FALSE) +
+  scale_color_manual(values = cols) +
+  scale_size_continuous(range = c(1, 5)) +
+  scale_edge_width_continuous(range = c(0.5, 2)) +
+  scale_edge_alpha_continuous(range = c(0.4, 0.9)) +
+  theme_void() +
+  coord_fixed()
+```

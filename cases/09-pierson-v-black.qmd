@@ -1,0 +1,464 @@
+---
+title: "Pierson v. Black"
+subtitle: "Civil complaint filed on November 28, 2022"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(tidytext)
+library(magrittr)
+library(scales)
+library(wordcloud)
+library(RColorBrewer)
+library(reshape2)
+library(igraph)
+library(ggraph)
+library(tidygraph)
+library(knitr)
+
+data(stop_words)
+
+# Path relative to the project root (execute-dir: project in _quarto.yml)
+raw_text <- read_file(
+  "Data-Analysis/2022-11-28-Pierson-v.-Black/2022-11-28-Complaint-Pierson-v.-Black-C.txt"
+)
+
+# Capitalize the first letter and use straight apostrophes (for tables)
+cap <- function(x) {
+  x <- gsub("\u2019", "'", x)
+  x <- paste0(toupper(substr(x, 1, 1)), substring(x, 2))
+  # Acronyms in upper case
+  acr <- tolower(x) %in% c("jp", "aml", "bbc", "usvi")
+  x[acr] <- toupper(x[acr])
+  x
+}
+
+# Tokenization, removal of tokens with numbers and of stop words
+text <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = word) %>%
+  filter(!is.na(word)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word)) %>%
+  anti_join(stop_words, by = "word")
+```
+
+| | |
+|:--|:--|
+| **Document type** | Civil complaint (New York Adult Survivors Act) |
+| **Court** | Supreme Court of the State of New York |
+| **Index number** | 952002/2022 |
+| **Source** | [NYSCEF](https://iapps.courts.state.ny.us/nyscef/DocumentList?docketId=M1ivU1LyHnTh2WMmdxN_PLUS_TA==&display=all) |
+| **Words (cleaned text)** | 7,856 |
+
+This legal document is a civil complaint filed by Cheri Pierson against the businessman Leon Black and against the estate of Jeffrey E. Epstein and its executors in the Supreme Court of the State of New York, under New York's Adult Survivors Act (ASA). The plaintiff alleges that in 2002 she was violently sexually assaulted and raped by Black inside Epstein's Manhattan residence, in an encounter that, according to the complaint, was deliberately planned and facilitated by Epstein himself, taking advantage of the plaintiff's financial vulnerability. The complaint argues that Epstein and his network recruited women with false promises of financial support for their professional projects or with offers of paid massages, and then introduced them to powerful men. The document states that, after suffering serious physical and psychological harm, the plaintiff was implicitly pressured into silence through threats of hidden recordings and later payments in cash. On the basis of these facts, which the complaint characterizes as sexual offenses under New York criminal law, the plaintiff brings claims for sexual assault, battery, intentional infliction of emotional distress, and gender-motivated violence, and seeks a declaratory judgment, injunctive relief, and punitive damages. The defendant denies the allegations.
+
+## Word frequency
+
+@fig-freq-pierson-v-black shows the most frequent words in the text. The relative frequency shows that none of them stands out from the rest. The first terms by frequency are those referring directly to the actors of the complaint: Pierson as plaintiff, Black as defendant, and Epstein and his estate, to whom the complaint attributes the role of accomplice and co-perpetrator of the alleged offenses. A group of words such as "massage", "sexual", "women", and "trust" also stands out, referring directly to the alleged offenses and to the modus operandi of the trafficking network allegedly led by Epstein. Finally, the term "Maxwell" appears; although it has a low frequency compared with the other people mentioned, it appears in the text on several occasions, which suggests that she is also relevant in the narrative.
+
+```{r}
+#| label: fig-freq-pierson-v-black
+#| fig-cap: "Bar chart: Pierson v. Black."
+#| fig-width: 8
+#| fig-height: 6
+
+text %>%
+  count(word, sort = TRUE) %>%
+  mutate(
+    percent = (n / sum(n)) * 100,
+    label   = paste0(n, " (", round(percent, 2), "%)"),
+    word    = reorder(word, n)
+  ) %>%
+  slice_max(n, n = 20, with_ties = FALSE) %>%
+  ggplot(aes(x = word, y = n)) +
+  geom_segment(aes(xend = word, yend = 0), color = "gray80", linewidth = 0.8) +
+  geom_point(color = "#C0392B", size = 3.5) +
+  geom_text(aes(label = label), hjust = -0.15, size = 3.5, color = "gray20") +
+  coord_flip() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(x = NULL, y = "Frequency") +
+  theme_minimal() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.y = element_text(size = 11, color = "black"),
+    axis.text.x = element_text(color = "gray40")
+  )
+```
+
+@fig-wordcloud-pierson-v-black shows graphically the distribution of word frequencies in the text. It shows visually the importance of Black, Pierson, and Epstein, whose terms are much larger than the rest, indicating that most of the central themes of the complaint revolve around these three people. Terms such as "Epstein's" and "Black's" also stand out, which may refer to the socioeconomic power attributed to them and to how, according to the complaint, it facilitated the abuse. Finally, there are no words that differ from those in the bar chart, which indicates a marked difference between the most frequent and the less used words, the former being the ones that, in general terms, articulate the narrative of the complaint.
+
+```{r}
+#| label: fig-wordcloud-pierson-v-black
+#| fig-cap: "Word cloud: Pierson v. Black."
+#| fig-width: 6
+#| fig-height: 6
+
+set.seed(1234)
+text %>%
+  count(word, sort = TRUE) %>%
+  with(wordcloud(
+    words = word,
+    freq  = n,
+    max.words = 20,
+    ordered.colors = FALSE,
+    colors = brewer.pal(9, "Greys")[7:9],
+    scale  = c(3.5, 0.6)
+  ))
+```
+
+The frequency analysis identifies the three main actors of the complaint and shows that they have much greater weight than any other term in the text. It also shows that one of the central themes of the complaint covers the alleged offenses and abuse, the modus operandi of the alleged trafficking network, and how the socioeconomic status of those involved allegedly favored the unlawful activity. Finally, the text is centered on a few terms that appear much more frequently than the rest of the words.
+
+## Sentiment analysis
+
+@fig-sentiment-pierson-v-black shows that the terms with negative sentiment have higher scores than those with positive sentiment. The three terms with the highest negative charge are "damages", "violence", and "rape", which refer directly to the plaintiff's account; they are used to narrate what allegedly happened, giving it a much greater impact through strong words that end up characterizing the negative tone of the text. Terms such as "victims", "harm", "criminal", "refused", and "distress" also stand out; these terms not only describe personal experiences, but also how, according to the complaint, the trafficking network was composed and sustained by the victims themselves, who were coerced through payments or threats.
+
+```{r}
+#| label: fig-sentiment-pierson-v-black
+#| fig-cap: "Bar chart of sentiment scores: Pierson v. Black."
+#| fig-width: 8
+#| fig-height: 6
+
+afinn <- get_sentiments("afinn")
+
+text %>%
+  inner_join(afinn, by = "word") %>%
+  count(word, value, sort = TRUE) %>%
+  mutate(score = n * value) %>%
+  filter(abs(score) > 9) %>%
+  mutate(sentiment = ifelse(value > 0, "Positive", "Negative")) %>%
+  mutate(word = reorder(word, score)) %>%
+  ggplot(aes(word, score, fill = sentiment)) +
+  geom_col(width = 0.7) +
+  coord_flip() +
+  scale_fill_manual(
+    name   = "Sentiment",
+    values = c("Negative" = "#d73027", "Positive" = "#4575b4")
+  ) +
+  scale_y_continuous(breaks = pretty_breaks(n = 20)) +
+  labs(y = "Score", x = NULL) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.y = element_text(face = "plain", color = "black", size = 11),
+    legend.position = "bottom"
+  )
+```
+
+On the other hand, the term with the highest positive score is "award", which is mainly used to request damages for the plaintiff, whether economic or to cover the costs of the legal team; this suggests that one of the main aims is to obtain redress for Pierson for the harm caused to her. Terms such as "trust", "motivated", "wealthy", and "superior" also appear, which in this particular context do not have a positive connotation, since they are used to describe how the alleged sexual exploitation network operated and how the socioeconomic status of those involved gave them, according to the complaint, a degree of impunity.
+
+```{r}
+#| label: fig-emotions-pierson-v-black
+#| fig-cap: "Pie chart of emotions: Pierson v. Black."
+#| fig-width: 7
+#| fig-height: 6
+
+nrc <- get_sentiments("nrc")
+
+emotions <- text %>%
+  inner_join(nrc, by = "word", relationship = "many-to-many") %>%
+  filter(!sentiment %in% c("negative", "positive")) %>%
+  count(sentiment) %>%
+  mutate(
+    percent   = (n / sum(n)) * 100,
+    sentiment = str_to_title(sentiment),
+    label     = ifelse(percent > 2, paste0(round(percent, 1), "%"), "")
+  )
+
+pastel_colors <- c(
+  "Anger"        = "#FF9999",
+  "Sadness"      = "#4A90E2",
+  "Joy"          = "#FDFD96",
+  "Fear"         = "#CDB4DB",
+  "Disgust"      = "#66CC66",
+  "Anticipation" = "#FFB347",
+  "Surprise"     = "#FFD1DC",
+  "Trust"        = "#AEEEEE"
+)
+
+ggplot(emotions, aes(x = "", y = percent, fill = sentiment)) +
+  geom_bar(stat = "identity", width = 1, color = "white") +
+  coord_polar("y", start = 0) +
+  geom_text(
+    aes(x = 1.25, label = label),
+    position = position_stack(vjust = 0.5),
+    size = 4.5, fontface = "bold", color = "gray20"
+  ) +
+  scale_fill_manual(values = pastel_colors, name = "Emotions") +
+  theme_void()
+```
+
+@fig-emotions-pierson-v-black shows that two of the most present emotions in the text are trust and anticipation, which in this case go hand in hand, since they are evoked by the mention of institutions and legal entities in the pursuit of redress for the harm caused, one of the main aims of the text. Emotions such as anger, fear, and sadness are also very prominent, because of the seriousness of the events described, which involve alleged acts such as rape, threats, and payments for silence, among others.
+
+The sentiment analysis shows that the text has an overall negative charge in its narrative, mainly because of the seriousness of the events described and the terms used, reinforced by emotions such as anger, fear, and sadness. By contrast, positive sentiment is reduced to a single term, since many of the words that make it up are not used in a positive sense in this context; this positive element refers to the pursuit of redress for the harm allegedly caused to Pierson, which is accompanied by emotions such as trust and anticipation.
+
+## Word relationships
+
+The bigram network was built from the bigrams with a frequency of at least 3, in order to obtain an informative network rather than a noisy one, thus keeping the most relevant information in the text. The analysis uses the largest connected component of the graph, since it concentrates the most relevant information.
+
+```{r}
+#| label: fig-bigram-pierson-v-black
+#| fig-cap: "Largest connected component of the bigram network, without and with vertex strength: Pierson v. Black."
+#| fig-width: 14
+#| fig-height: 7
+
+text_bi_counts <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = bigram, token = "ngrams", n = 2) %>%
+  filter(!is.na(bigram)) %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!grepl(pattern = "[0-9]", x = word1)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word2)) %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word) %>%
+  filter(!is.na(word1), !is.na(word2)) %>%
+  count(word1, word2, sort = TRUE) %>%
+  rename(weight = n)
+
+# Bigrams that appear 3 or more times
+g <- text_bi_counts %>%
+  filter(weight > 2) %>%
+  graph_from_data_frame(directed = FALSE)
+
+V(g)$cluster <- components(graph = g)$membership
+gcc <- induced_subgraph(
+  graph = g,
+  vids  = which(V(g)$cluster == which.max(components(graph = g)$csize))
+)
+
+par(mfrow = c(1, 2), mar = c(1, 1, 2, 1), mgp = c(1, 1, 1))
+
+set.seed(1)
+plot(
+  gcc,
+  layout = layout_with_lgl,
+  vertex.color = 1,
+  vertex.frame.color = 1,
+  vertex.size = 3,
+  vertex.label.color = "black",
+  vertex.label.cex = 1,
+  vertex.label.dist = 1
+)
+
+set.seed(1)
+plot(
+  gcc,
+  layout = layout_with_lgl,
+  vertex.color = adjustcolor("darkolivegreen4", 0.1),
+  vertex.frame.color = "darkolivegreen4",
+  vertex.size = 0.1 * strength(gcc),
+  vertex.label.color = "black",
+  vertex.label.cex = 1,
+  vertex.label.dist = 1,
+  edge.width = 3 * E(gcc)$weight / max(E(gcc)$weight)
+)
+```
+
+@fig-bigram-pierson-v-black shows that the two vertices with the highest strength in the network are those referring to the plaintiff, a main actor around whom several of the themes of the text revolve. Black is connected to Epstein through the vertex "called", which, according to the complaint, was the means by which the details of the encounter were arranged. Black is also associated with conduct directly related to the alleged abuse, such as "sexual abuse", "sexual offense", and "sexual acts", since he is the main person against whom the rape allegations are made. Finally, the graph shows no explicit direct relationship between Epstein and Pierson, which suggests that the complaint attributes to Epstein the role of facilitator and organizer rather than of direct perpetrator of the abuse.
+
+The bigram network shows how the three main actors identified above relate to each other, clarifying the alleged offenses and who allegedly committed them directly. Pierson plays a vital role in the network, since the vertices related to her are those with the highest strength, which indicates that the general narrative revolves around her. Finally, there are no terms related to the redress sought for the plaintiff, even though this aspect had previously been identified as one of the relevant themes of the case.
+
+The skipgram network is built with all pairs, regardless of their frequency, which makes it possible to find semantic relationships that are not perceptible at first sight. The largest connected component is also used, since it contains the most important information and allows the computation of statistics that are not defined on a disconnected graph, such as the mean distance between vertices.
+
+```{r}
+#| label: tbl-skipgrams-pierson-v-black
+#| tbl-cap: "Skipgram frequencies: Pierson v. Black."
+
+text_skip_counts <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = skipgram, token = "skip_ngrams", n = 2) %>%
+  filter(!is.na(skipgram)) %>%
+  # Keep only pairs (remove unigrams)
+  filter(str_count(skipgram, "\\S+") == 2) %>%
+  separate(skipgram, c("word1", "word2"), sep = " ") %>%
+  filter(!grepl(pattern = "[0-9]", x = word1)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word2)) %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word) %>%
+  filter(!is.na(word1), !is.na(word2)) %>%
+  count(word1, word2, sort = TRUE) %>%
+  mutate(rel_freq = round((n / sum(n)) * 100, 2)) %>%
+  rename(weight = n)
+
+text_skip_counts %>%
+  head(n = 10) %>%
+  transmute(
+    `Word 1`     = cap(word1),
+    `Word 2`     = cap(word2),
+    `Freq.`      = weight,
+    `Rel. freq.` = paste0(format(rel_freq, nsmall = 2), "%")
+  ) %>%
+  kable(align = "llrr")
+
+# Network and largest connected component (used in the tables and figures below)
+g <- text_skip_counts %>%
+  filter(weight > 0) %>%
+  graph_from_data_frame(directed = FALSE)
+g <- igraph::simplify(g)
+
+V(g)$cluster <- components(graph = g)$membership
+gcc <- induced_subgraph(
+  graph = g,
+  vids  = which(V(g)$cluster == which.max(components(graph = g)$csize))
+)
+```
+
+@tbl-skipgrams-pierson-v-black shows the most frequent skipgrams. The most prevalent one is "Ms Pierson", with a relative frequency of 3.68%, which is very high compared with the other skipgrams, none of which reaches 1%; this indicates that Pierson plays a vital role in the network, articulating the themes and people mentioned in the text. There are also pairs connecting the people involved, such as "Black Ms", "Black Epstein", and "Epstein Ms", which indicates that all the actors are related to each other in some way. Finally, two pairs refer to Epstein's possessions and surroundings, "estate Jeffrey" and "Epstein's townhouse", which provide the context of where the alleged offenses took place and recall that one of the co-defendants is Epstein's estate, against which the plaintiff seeks both judicial and economic redress.
+
+::: {layout-ncol=2}
+
+```{r}
+#| label: tbl-skip-stats-pierson-v-black
+#| tbl-cap: "Statistics of the largest connected component of the skipgram network: Pierson v. Black."
+
+tibble(
+  Statistic = c(
+    "Mean distance", "Mean degree", "SD of degree",
+    "Clique number", "Density", "Transitivity", "Assortativity"
+  ),
+  Value = c(
+    mean_distance(gcc),
+    mean(degree(gcc)),
+    sd(degree(gcc)),
+    clique_num(gcc),
+    edge_density(gcc),
+    transitivity(gcc),
+    assortativity_degree(gcc)
+  )
+) %>%
+  kable(digits = 2, align = "lr")
+```
+
+```{r}
+#| label: tbl-eigen-pierson-v-black
+#| tbl-cap: "Eigenvector centrality in the largest connected component of the skipgram network: Pierson v. Black."
+
+tibble(
+  Word       = cap(V(gcc)$name),
+  Centrality = eigen_centrality(gcc)$vector
+) %>%
+  arrange(desc(Centrality)) %>%
+  slice_head(n = 10) %>%
+  kable(digits = 2, align = "lr")
+```
+
+:::
+
+@tbl-skip-stats-pierson-v-black shows that the mean distance of the network is 5.14; that is, on average, slightly more than five steps are needed to go from one word to another. Being a moderate value, it suggests a less centralized narrative, in which the different concepts and actors are connected more gradually throughout the text. This interconnection is supported by the mean degree of 3.79, meaning that each word is directly connected to almost four different terms on average. However, the standard deviation of the degree is very high (7.79) compared with its mean, which reveals great variability: a few words are connected to many others, while most have very few connections. In other words, there are hub words that appear next to many different terms, which points to very marked themes in the text.
+
+Regarding the grouping of words, the clique number is 6, meaning that the largest group of words that are all connected to each other has 6 terms; such a structure usually reflects a frequently repeated central argument or words that always appear together. At the global level, however, the density of the network is close to 0 (it rounds to 0.00), meaning that well under 1% of all possible connections are present; the network is therefore very sparse, as is usual in word networks with a large and varied vocabulary. Consistently with this sparsity, the transitivity is 0.06, so there is only a 6% probability that two words connected to the same term are also connected to each other (forming triangles), which reflects a structure with low cohesion. Finally, the degree assortativity is negative (-0.11), indicating a mild tendency of highly connected words to link with words that have few connections, rather than with other central words.
+
+@tbl-eigen-pierson-v-black shows that the most important words according to eigenvector centrality are "Ms" and "Pierson", both with values close to 1 (the maximum value). This stands out when compared with the other words, none of which reaches 0.2, and confirms that Pierson is the central axis of the whole text and that all the themes are organized around her. People such as Black, Epstein, and Maxwell also appear, to a lesser extent, indicating that these actors are important in the general narrative. Finally, terms such as "called", "refused", and "told" appear, which refer directly to the alleged modus operandi of the trafficking network and to how Epstein and Black were related, making the relationship between these two men a relevant theme in the case.
+
+```{r}
+#| label: tbl-clusters-pierson-v-black
+#| tbl-cap: "Vertices with the highest strength in the five largest clusters: Pierson v. Black."
+
+# Clustering (fast greedy algorithm)
+set.seed(123)
+kc <- cluster_fast_greedy(gcc)
+
+cluster_data <- tibble(
+  Word     = V(gcc)$name,
+  Cluster  = membership(kc),
+  Strength = strength(gcc)
+)
+
+cluster_data %>%
+  group_by(Cluster) %>%
+  mutate(Size = n()) %>%
+  ungroup() %>%
+  arrange(desc(Size)) %>%
+  filter(Cluster %in% head(unique(Cluster), 5)) %>%
+  group_by(Cluster) %>%
+  arrange(desc(Strength), .by_group = TRUE) %>%
+  slice_head(n = 3) %>%
+  mutate(
+    Word    = cap(Word),
+    Size    = ifelse(row_number() == 1, as.character(Size), ""),
+    Cluster = ifelse(row_number() == 1, as.character(Cluster), "")
+  ) %>%
+  ungroup() %>%
+  select(Cluster, Size, Word, Strength) %>%
+  kable(digits = 0, align = "cclr")
+```
+
+@tbl-clusters-pierson-v-black presents the words with the highest strength in the five largest clusters obtained with the fast greedy algorithm. Cluster 2 shows the relationship between the defendant and the plaintiff, characterized mainly by a dynamic of alleged abuse and power, but also by the pursuit of redress from Black for Pierson; meanwhile, cluster 3 focuses almost entirely on Epstein and his estate, showing that the mere mention of this person is a major thematic axis of the narrative, defined by his properties and actions. Cluster 6 focuses mainly on the account of the events from Pierson's perspective, a testimony of alleged abuse that caused serious harm to her, while cluster 7 refers to Epstein's alleged trafficking network and its modus operandi ("massage", "women"), of which, according to the complaint, Pierson was a victim. Finally, cluster 8 groups terms related to legal drafting, which suggests that all the offenses mentioned, besides being supported by a testimony, are presented with a legal basis.
+
+## Additional figures {.appendix}
+
+```{r}
+#| label: fig-sentiment-cloud-pierson-v-black
+#| fig-cap: "Word cloud with sentiment charge: Pierson v. Black."
+#| fig-width: 7
+#| fig-height: 7
+
+set.seed(123)
+text %>%
+  inner_join(afinn, by = "word") %>%
+  count(word, value, sort = TRUE) %>%
+  mutate(sentiment = ifelse(value > 0, "Positive", "Negative")) %>%
+  mutate(impact = n * abs(value)) %>%
+  acast(word ~ sentiment, value.var = "impact", fill = 0) %>%
+  comparison.cloud(
+    colors     = c("firebrick", "steelblue"),   # Negative, Positive
+    max.words  = 50,
+    title.size = 1.5
+  )
+```
+
+```{r}
+#| label: fig-skipgram-pierson-v-black
+#| fig-cap: "Largest connected component of the skipgram network: Pierson v. Black."
+#| fig-width: 7
+#| fig-height: 7
+
+set.seed(123)
+ggraph(gcc, layout = "linear", circular = TRUE) +
+  geom_edge_arc(aes(edge_width = weight, edge_alpha = weight),
+                color = "darkolivegreen4", show.legend = FALSE) +
+  geom_node_point(aes(size = strength(gcc)), color = "gray20",
+                  alpha = 0.8, show.legend = FALSE) +
+  scale_edge_width_continuous(range = c(0.2, 1.5)) +
+  scale_edge_alpha_continuous(range = c(0.1, 0.5)) +
+  scale_size_continuous(range = c(1, 4)) +
+  theme_void() +
+  coord_fixed()
+```
+
+```{r}
+#| label: fig-clustering-pierson-v-black
+#| fig-cap: "Clustering of the largest connected component of the skipgram network: Pierson v. Black."
+#| fig-width: 7
+#| fig-height: 7
+
+cols <- c(
+  brewer.pal(9, "Set1")[1:9],
+  brewer.pal(8, "Set2")[1:7],
+  brewer.pal(8, "Set2")[1:7],
+  brewer.pal(12, "Set3")[1:12]
+)
+# Recycle the palette if there are more clusters than colors
+cols <- rep_len(cols, max(length(cols), length(kc)))
+
+gcc_tidy <- as_tbl_graph(gcc) %>%
+  activate(nodes) %>%
+  mutate(
+    strength  = strength(gcc),
+    community = as.factor(membership(kc))
+  ) %>%
+  arrange(community)
+
+set.seed(123)
+ggraph(gcc_tidy, layout = "linear", circular = TRUE) +
+  geom_edge_arc(aes(edge_alpha = weight, edge_width = weight),
+                color = "gray70", show.legend = FALSE) +
+  geom_node_point(aes(color = community, size = strength), show.legend = FALSE) +
+  scale_color_manual(values = cols) +
+  scale_size_continuous(range = c(1, 5)) +
+  scale_edge_width_continuous(range = c(0.5, 2)) +
+  scale_edge_alpha_continuous(range = c(0.4, 0.9)) +
+  theme_void() +
+  coord_fixed()
+```

@@ -1,0 +1,465 @@
+---
+title: "United States v. Maxwell"
+subtitle: "Federal indictment, June 2020"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(tidytext)
+library(magrittr)
+library(scales)
+library(wordcloud)
+library(RColorBrewer)
+library(reshape2)
+library(igraph)
+library(ggraph)
+library(tidygraph)
+library(knitr)
+
+data(stop_words)
+
+# Path relative to the project root (execute-dir: project in _quarto.yml)
+raw_text <- read_file(
+  "Data-Analysis/2020-06-29-USA-v.-Maxwell/2020-06-29-Indictment-USA-v.-Maxwell-C.txt"
+)
+
+# Capitalize the first letter and use straight apostrophes (for tables)
+cap <- function(x) {
+  x <- gsub("\u2019", "'", x)
+  x <- paste0(toupper(substr(x, 1, 1)), substring(x, 2))
+  # Acronyms in upper case
+  acr <- tolower(x) %in% c("jp", "aml", "bbc", "usvi")
+  x[acr] <- toupper(x[acr])
+  x
+}
+
+# Tokenization, removal of tokens with numbers and of stop words
+text <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = word) %>%
+  filter(!is.na(word)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word)) %>%
+  anti_join(stop_words, by = "word")
+```
+
+| | |
+|:--|:--|
+| **Document type** | Federal indictment |
+| **Court** | U.S. District Court for the Southern District of New York |
+| **Case number** | 20 Cr. 330 |
+| **Source** | [U.S. Department of Justice](https://www.justice.gov/usao-sdny/united-states-v-ghislaine-maxwell) |
+| **Words (cleaned text)** | 3,005 |
+| **Note** | The document was transcribed manually. |
+
+This legal document is a criminal indictment brought by the United States Government against Ghislaine Maxwell in the U.S. District Court for the Southern District of New York. The prosecution alleges that, between 1994 and 1997, the defendant assisted, facilitated, and contributed to Jeffrey Epstein's sexual exploitation and abuse of multiple minor victims, some as young as 14. According to the charges, Maxwell recruited and groomed the girls by building a relationship of trust in order to normalize the abusive conduct, encouraging them to give Epstein massages of a sexual nature, sometimes in exchange for financial or educational support, at his residences in Manhattan, Palm Beach, Santa Fe, and London. The indictment alleges the defendant's direct participation in the conspiracy and in the interstate transportation of minors for criminal purposes, and also charges her with perjury for allegedly lying under oath during depositions in 2016 in order to conceal her conduct.
+
+## Word frequency
+
+@fig-freq-usa-v-maxwell shows the most frequent terms in the text. First, the term "minor" has a relative frequency of 7.4%, a considerably high percentage for this type of analysis. As the most frequent word, it shows that the age of the alleged victims is one of the central axes of the indictment, carrying great weight throughout the case. This is complemented by the next most frequent word, "victim", which confirms the constant reference to those affected. The following terms refer directly to the two alleged perpetrators, "Maxwell" and "Epstein", including variants related to their first names or to her status as defendant, which confirms their role as main actors given their high frequency. Finally, concepts linked to the legal definition of the offenses, the modus operandi, and the places associated with the events stand out.
+
+```{r}
+#| label: fig-freq-usa-v-maxwell
+#| fig-cap: "Bar chart: United States v. Maxwell."
+#| fig-width: 8
+#| fig-height: 6
+
+text %>%
+  count(word, sort = TRUE) %>%
+  mutate(
+    percent = (n / sum(n)) * 100,
+    label   = paste0(n, " (", round(percent, 2), "%)"),
+    word    = reorder(word, n)
+  ) %>%
+  slice_max(n, n = 20, with_ties = FALSE) %>%
+  ggplot(aes(x = word, y = n)) +
+  geom_segment(aes(xend = word, yend = 0), color = "gray80", linewidth = 0.8) +
+  geom_point(color = "#C0392B", size = 3.5) +
+  geom_text(aes(label = label), hjust = -0.15, size = 3.5, color = "gray20") +
+  coord_flip() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(x = NULL, y = "Frequency") +
+  theme_minimal() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.y = element_text(size = 11, color = "black"),
+    axis.text.x = element_text(color = "gray40")
+  )
+```
+
+The word cloud in @fig-wordcloud-usa-v-maxwell shows no new terms compared with the bar chart. That is, beyond the terms already discussed, there are no additional concepts of significant relevance to the analysis of the case. This corroborates the previous observations and confirms a marked difference between these central terms and the rest, showing that the main words dominate the text, since no other words have similar frequencies.
+
+```{r}
+#| label: fig-wordcloud-usa-v-maxwell
+#| fig-cap: "Word cloud: United States v. Maxwell."
+#| fig-width: 6
+#| fig-height: 6
+
+set.seed(1243)
+text %>%
+  count(word, sort = TRUE) %>%
+  with(wordcloud(
+    words = word,
+    freq  = n,
+    max.words = 20,
+    ordered.colors = FALSE,
+    colors = brewer.pal(9, "Greys")[7:9],
+    scale  = c(3.5, 0.6)
+  ))
+```
+
+The frequency analysis shows that the text revolves markedly around a small core of highly recurrent terms, whose use is much higher than that of the rest of the vocabulary. It also identifies the centrality of the age of the alleged victims, with the term referring to their minority being the most frequent in the document. Finally, there are three main groups of words that appear repeatedly throughout the case: those referring to the victims, to the alleged perpetrators, and to the nature of the alleged crimes.
+
+## Sentiment analysis
+
+@fig-sentiment-usa-v-maxwell shows that the term "victim" has a disproportionate score compared with the other terms. This implies that both the negative sentiment and the overall tone of the text are characterized by the recurrence and weight of this word. Moreover, most of the predominant concepts, such as "abuse", "conspiracy", "victims", "criminal", and "perjury", refer directly to the accounts of the alleged victims and to the charges. It can therefore be inferred that the negative sentiment of the case is directly linked to the vulnerability and experiences of the victims described in the criminal proceedings.
+
+```{r}
+#| label: fig-sentiment-usa-v-maxwell
+#| fig-cap: "Bar chart of sentiment scores: United States v. Maxwell."
+#| fig-width: 8
+#| fig-height: 6
+
+afinn <- get_sentiments("afinn")
+
+text %>%
+  inner_join(afinn, by = "word") %>%
+  count(word, value, sort = TRUE) %>%
+  mutate(score = n * value) %>%
+  filter(abs(score) > 2) %>%
+  mutate(sentiment = ifelse(value > 0, "Positive", "Negative")) %>%
+  mutate(word = reorder(word, score)) %>%
+  ggplot(aes(word, score, fill = sentiment)) +
+  geom_col(width = 0.7) +
+  coord_flip() +
+  scale_fill_manual(
+    name   = "Sentiment",
+    values = c("Negative" = "#d73027", "Positive" = "#4575b4")
+  ) +
+  scale_y_continuous(breaks = pretty_breaks(n = 20)) +
+  labs(y = "Score", x = NULL) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.y = element_text(face = "plain", color = "black", size = 11),
+    legend.position = "bottom"
+  )
+```
+
+Positive sentiment consists of four terms, two of which refer to institutional and legal entities: "grand" and "united" (associated with the grand jury and the United States). These terms therefore have no real positive connotation in the context of the document. The other two words, "encouraged" and "engage", refer directly to the methods allegedly used to recruit new victims. Consequently, a genuinely positive emotional charge in the text is ruled out, since these terms appear because of legal formalities or the description of the alleged modus operandi, elements that do not evoke that emotion.
+
+```{r}
+#| label: fig-emotions-usa-v-maxwell
+#| fig-cap: "Pie chart of emotions: United States v. Maxwell."
+#| fig-width: 7
+#| fig-height: 6
+
+nrc <- get_sentiments("nrc")
+
+emotions <- text %>%
+  inner_join(nrc, by = "word", relationship = "many-to-many") %>%
+  filter(!sentiment %in% c("negative", "positive")) %>%
+  count(sentiment) %>%
+  mutate(
+    percent   = (n / sum(n)) * 100,
+    sentiment = str_to_title(sentiment),
+    label     = ifelse(percent > 2, paste0(round(percent, 1), "%"), "")
+  )
+
+pastel_colors <- c(
+  "Anger"        = "#FF9999",
+  "Sadness"      = "#4A90E2",
+  "Joy"          = "#FDFD96",
+  "Fear"         = "#CDB4DB",
+  "Disgust"      = "#66CC66",
+  "Anticipation" = "#FFB347",
+  "Surprise"     = "#FFD1DC",
+  "Trust"        = "#AEEEEE"
+)
+
+ggplot(emotions, aes(x = "", y = percent, fill = sentiment)) +
+  geom_bar(stat = "identity", width = 1, color = "white") +
+  coord_polar("y", start = 0) +
+  geom_text(
+    aes(x = 1.25, label = label),
+    position = position_stack(vjust = 0.5),
+    size = 4.5, fontface = "bold", color = "gray20"
+  ) +
+  scale_fill_manual(values = pastel_colors, name = "Emotions") +
+  theme_void()
+```
+
+The pie chart of emotions in @fig-emotions-usa-v-maxwell shows that the predominant emotions, which account for almost 75% of the words, are anger, fear, and sadness. These emotions reflect the impact and weight of the accounts of systematic and prolonged abuse over the years; according to the indictment, this was not a matter of isolated assaults, but of a complex and structured recruitment scheme. This is confirmed by the low presence of joy, whose low frequency accentuates the contrast with the previous categories and shows that the overall tone of the document evokes mostly negative emotions.
+
+This analysis shows that both positive sentiment and the emotions related to it, such as joy, are very weak, being clearly outweighed by a generalized negative sentiment and by the emotional states related to it. The terms referring to the victims and their experiences are the ones that give most of the text its negative tone. Moreover, the words initially classified as positive do not refer to positive elements in the actual context of the indictment, which confirms the absence of genuinely positive components in the document.
+
+## Word relationships
+
+The bigram network was built from the bigrams with a frequency of at least 3, in order to obtain an informative network rather than a noisy one, thus keeping the most relevant information in the text. The analysis uses the largest connected component of the graph, since it concentrates the most relevant information.
+
+```{r}
+#| label: fig-bigram-usa-v-maxwell
+#| fig-cap: "Largest connected component of the bigram network, without and with vertex strength: United States v. Maxwell."
+#| fig-width: 14
+#| fig-height: 7
+
+text_bi_counts <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = bigram, token = "ngrams", n = 2) %>%
+  filter(!is.na(bigram)) %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!grepl(pattern = "[0-9]", x = word1)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word2)) %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word) %>%
+  filter(!is.na(word1), !is.na(word2)) %>%
+  count(word1, word2, sort = TRUE) %>%
+  rename(weight = n)
+
+# Bigrams that appear 3 or more times
+g <- text_bi_counts %>%
+  filter(weight > 2) %>%
+  graph_from_data_frame(directed = FALSE)
+
+V(g)$cluster <- components(graph = g)$membership
+gcc <- induced_subgraph(
+  graph = g,
+  vids  = which(V(g)$cluster == which.max(components(graph = g)$csize))
+)
+
+par(mfrow = c(1, 2), mar = c(1, 1, 2, 1), mgp = c(1, 1, 1))
+
+set.seed(9)
+plot(
+  gcc,
+  layout = layout_with_lgl,
+  vertex.color = 1,
+  vertex.frame.color = 1,
+  vertex.size = 3,
+  vertex.label.color = "black",
+  vertex.label.cex = 1,
+  vertex.label.dist = 1
+)
+
+set.seed(9)
+plot(
+  gcc,
+  layout = layout_with_lgl,
+  vertex.color = adjustcolor("darkolivegreen4", 0.1),
+  vertex.frame.color = "darkolivegreen4",
+  vertex.size = 0.5 * strength(gcc),
+  vertex.label.color = "black",
+  vertex.label.cex = 1,
+  vertex.label.dist = 1,
+  edge.width = 3 * E(gcc)$weight / max(E(gcc)$weight)
+)
+```
+
+@fig-bigram-usa-v-maxwell shows that the vertices with the highest strength are "victim" and "minor", and the edge connecting them has the highest weight in the whole network. This pair is clearly central and important in the text. The term that connects "Maxwell" with "minor" is "encouraged", a key link that illustrates the alleged process of recruiting minors and the type of conduct to which they were allegedly subjected, seen in the graph through connections such as "sexual encounters" and "sexual activity". Finally, the pair "multiple occasions" stands out, which reflects the allegedly repeated and systematic nature of the abuse suffered by the victims, in which the defendant appears as a main actor.
+
+The bigram network shows that two vertices concentrate a much greater strength than the rest of the graph. The analysis also helps to understand the nature of Maxwell's alleged relationship with the victims and how the two parties interacted. Finally, the absence of Epstein from the network is striking, which suggests that the central theme of the indictment revolves around Maxwell and her alleged participation in the offenses described; Epstein is thus a crucial actor for the context, but secondary when the events and their relationship with the actors of the network are set out.
+
+The skipgram network is built with all pairs, regardless of their frequency, which makes it possible to find semantic relationships that are not perceptible at first sight. The largest connected component is also used, since it contains the most important information and allows the computation of statistics that are not defined on a disconnected graph, such as the mean distance between vertices.
+
+```{r}
+#| label: tbl-skipgrams-usa-v-maxwell
+#| tbl-cap: "Skipgram frequencies: United States v. Maxwell."
+
+text_skip_counts <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = skipgram, token = "skip_ngrams", n = 2) %>%
+  filter(!is.na(skipgram)) %>%
+  # Keep only pairs (remove unigrams)
+  filter(str_count(skipgram, "\\S+") == 2) %>%
+  separate(skipgram, c("word1", "word2"), sep = " ") %>%
+  filter(!grepl(pattern = "[0-9]", x = word1)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word2)) %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word) %>%
+  filter(!is.na(word1), !is.na(word2)) %>%
+  count(word1, word2, sort = TRUE) %>%
+  mutate(rel_freq = round((n / sum(n)) * 100, 2)) %>%
+  rename(weight = n)
+
+text_skip_counts %>%
+  head(n = 10) %>%
+  transmute(
+    `Word 1`     = cap(word1),
+    `Word 2`     = cap(word2),
+    `Freq.`      = weight,
+    `Rel. freq.` = paste0(format(rel_freq, nsmall = 2), "%")
+  ) %>%
+  kable(align = "llrr")
+
+# Network and largest connected component (used in the tables and figures below)
+g <- text_skip_counts %>%
+  filter(weight > 0) %>%
+  graph_from_data_frame(directed = FALSE)
+g <- igraph::simplify(g)
+
+V(g)$cluster <- components(graph = g)$membership
+gcc <- induced_subgraph(
+  graph = g,
+  vids  = which(V(g)$cluster == which.max(components(graph = g)$csize))
+)
+```
+
+@tbl-skipgrams-usa-v-maxwell presents the most frequent skipgrams. Strikingly, the first skipgram has a much higher relative frequency than the rest, close to 7%, while the remaining pairs are around 1%. This shows the importance of the association between "victim" and "minor" in the text, a pattern confirmed by the second most frequent skipgram, which repeats it with the plural form. The following associations refer directly to the alleged perpetrators and to their interaction, notably "Maxwell minor" and "Maxwell Epstein", which suggests that, although no skipgram among the top positions directly links Epstein with the victims, there is a connection mediated by Maxwell. Finally, the pair "sexual activity" stands out, showing the intrinsic nature of the alleged offenses.
+
+::: {layout-ncol=2}
+
+```{r}
+#| label: tbl-skip-stats-usa-v-maxwell
+#| tbl-cap: "Statistics of the largest connected component of the skipgram network: United States v. Maxwell."
+
+tibble(
+  Statistic = c(
+    "Mean distance", "Mean degree", "SD of degree",
+    "Clique number", "Density", "Transitivity", "Assortativity"
+  ),
+  Value = c(
+    mean_distance(gcc),
+    mean(degree(gcc)),
+    sd(degree(gcc)),
+    clique_num(gcc),
+    edge_density(gcc),
+    transitivity(gcc),
+    assortativity_degree(gcc)
+  )
+) %>%
+  kable(digits = 2, align = "lr")
+```
+
+```{r}
+#| label: tbl-eigen-usa-v-maxwell
+#| tbl-cap: "Eigenvector centrality in the largest connected component of the skipgram network: United States v. Maxwell."
+
+tibble(
+  Word       = cap(V(gcc)$name),
+  Centrality = eigen_centrality(gcc)$vector
+) %>%
+  arrange(desc(Centrality)) %>%
+  slice_head(n = 10) %>%
+  kable(digits = 2, align = "lr")
+```
+
+:::
+
+@tbl-skip-stats-usa-v-maxwell shows that the mean distance of the network is 5.64; that is, on average, more than five steps are needed to go from one word to another. Being a moderate value, it suggests a less centralized narrative, in which the different concepts and actors are connected more gradually throughout the text. This interconnection is supported by the mean degree of 4.25, meaning that each word is directly connected to slightly more than four different terms on average. However, the standard deviation of the degree is high (6.47) compared with its mean, which reveals great variability: a few words are connected to many others, while most have very few connections. In other words, there are hub words that appear next to many different terms, which points to very marked themes in the text.
+
+Regarding the grouping of words, the clique number is 5, meaning that the largest group of words that are all connected to each other has 5 terms; such a structure usually reflects a frequently repeated central argument or words that always appear together. At the global level, however, the density of the network is 0.02, meaning that only 2% of all possible connections are present; the network is therefore very sparse, as is usual in word networks with a large and varied vocabulary. Consistently with this sparsity, the transitivity is 0.13, so there is only a 13% probability that two words connected to the same term are also connected to each other (forming triangles), which reflects a structure with low cohesion. Finally, the degree assortativity is negative (-0.14), indicating a mild tendency of highly connected words to link with words that have few connections, rather than with other central words.
+
+@tbl-eigen-usa-v-maxwell shows the most important words in the text according to eigenvector centrality. Notably, the first terms, "minor" and "victim", have much higher values than all the other words, which shows that they act as the central axis of the whole document and that the rest of the vocabulary is organized around them. The next most relevant terms refer to the main actors, such as Maxwell, Epstein, and the victims, and to the relationships among them; this is reflected in words such as "abuse", which refers to the alleged criminal link between the victims and Epstein; "encouraged", which describes Maxwell's alleged role in recruiting the minors; and "provided", which describes the alleged logistical and operational cooperation between Maxwell and Epstein.
+
+```{r}
+#| label: tbl-clusters-usa-v-maxwell
+#| tbl-cap: "Vertices with the highest strength in the five largest clusters: United States v. Maxwell."
+
+# Clustering (fast greedy algorithm)
+set.seed(123)
+kc <- cluster_fast_greedy(gcc)
+
+cluster_data <- tibble(
+  Word     = V(gcc)$name,
+  Cluster  = membership(kc),
+  Strength = strength(gcc)
+)
+
+cluster_data %>%
+  group_by(Cluster) %>%
+  mutate(Size = n()) %>%
+  ungroup() %>%
+  arrange(desc(Size)) %>%
+  filter(Cluster %in% head(unique(Cluster), 5)) %>%
+  group_by(Cluster) %>%
+  arrange(desc(Strength), .by_group = TRUE) %>%
+  slice_head(n = 3) %>%
+  mutate(
+    Word    = cap(Word),
+    Size    = ifelse(row_number() == 1, as.character(Size), ""),
+    Cluster = ifelse(row_number() == 1, as.character(Cluster), "")
+  ) %>%
+  ungroup() %>%
+  select(Cluster, Size, Word, Strength) %>%
+  kable(digits = 0, align = "cclr")
+```
+
+@tbl-clusters-usa-v-maxwell presents the words with the highest strength in the five largest clusters obtained with the fast greedy algorithm. The largest cluster is characterized by the terms "Maxwell", "Epstein", and "Jeffrey", which shows that these two people are almost intrinsically related in the indictment and that its main thematic axes revolve around them. Cluster 5 refers directly to the alleged criminal conduct related to the abuse and the sexual exploitation network, while cluster 2 refers to the offenses related to lying under oath. Cluster 7 groups the terms closely linked to the victims and their vulnerability. Finally, cluster 1 concentrates the legal terminology used throughout the indictment.
+
+## Additional figures {.appendix}
+
+```{r}
+#| label: fig-sentiment-cloud-usa-v-maxwell
+#| fig-cap: "Word cloud with sentiment charge: United States v. Maxwell."
+#| fig-width: 7
+#| fig-height: 7
+
+set.seed(123)
+text %>%
+  inner_join(afinn, by = "word") %>%
+  count(word, value, sort = TRUE) %>%
+  mutate(sentiment = ifelse(value > 0, "Positive", "Negative")) %>%
+  mutate(impact = n * abs(value)) %>%
+  acast(word ~ sentiment, value.var = "impact", fill = 0) %>%
+  comparison.cloud(
+    colors     = c("firebrick", "steelblue"),   # Negative, Positive
+    max.words  = 50,
+    title.size = 1.5
+  )
+```
+
+```{r}
+#| label: fig-skipgram-usa-v-maxwell
+#| fig-cap: "Largest connected component of the skipgram network: United States v. Maxwell."
+#| fig-width: 7
+#| fig-height: 7
+
+set.seed(123)
+ggraph(gcc, layout = "linear", circular = TRUE) +
+  geom_edge_arc(aes(edge_width = weight, edge_alpha = weight),
+                color = "darkolivegreen4", show.legend = FALSE) +
+  geom_node_point(aes(size = strength(gcc)), color = "gray20",
+                  alpha = 0.8, show.legend = FALSE) +
+  scale_edge_width_continuous(range = c(0.2, 1.5)) +
+  scale_edge_alpha_continuous(range = c(0.1, 0.5)) +
+  scale_size_continuous(range = c(1, 4)) +
+  theme_void() +
+  coord_fixed()
+```
+
+```{r}
+#| label: fig-clustering-usa-v-maxwell
+#| fig-cap: "Clustering of the largest connected component of the skipgram network: United States v. Maxwell."
+#| fig-width: 7
+#| fig-height: 7
+
+cols <- c(
+  brewer.pal(9, "Set1")[1:9],
+  brewer.pal(8, "Set2")[1:7],
+  brewer.pal(8, "Set2")[1:7],
+  brewer.pal(12, "Set3")[1:3]
+)
+# Recycle the palette if there are more clusters than colors
+cols <- rep_len(cols, max(length(cols), length(kc)))
+
+gcc_tidy <- as_tbl_graph(gcc) %>%
+  activate(nodes) %>%
+  mutate(
+    strength  = strength(gcc),
+    community = as.factor(membership(kc))
+  ) %>%
+  arrange(community)
+
+set.seed(123)
+ggraph(gcc_tidy, layout = "linear", circular = TRUE) +
+  geom_edge_arc(aes(edge_alpha = weight, edge_width = weight),
+                color = "gray70", show.legend = FALSE) +
+  geom_node_point(aes(color = community, size = strength), show.legend = FALSE) +
+  scale_color_manual(values = cols) +
+  scale_size_continuous(range = c(1, 5)) +
+  scale_edge_width_continuous(range = c(0.5, 2)) +
+  scale_edge_alpha_continuous(range = c(0.4, 0.9)) +
+  theme_void() +
+  coord_fixed()
+```

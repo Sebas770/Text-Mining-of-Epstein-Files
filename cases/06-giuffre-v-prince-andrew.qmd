@@ -1,0 +1,464 @@
+---
+title: "Giuffre v. Prince Andrew"
+subtitle: "Civil complaint filed on August 9, 2021"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(tidytext)
+library(magrittr)
+library(scales)
+library(wordcloud)
+library(RColorBrewer)
+library(reshape2)
+library(igraph)
+library(ggraph)
+library(tidygraph)
+library(knitr)
+
+data(stop_words)
+
+# Path relative to the project root (execute-dir: project in _quarto.yml)
+raw_text <- read_file(
+  "Data-Analysis/2021-08-09-Giuffre-v.-Prince-Andrew/2021-08-09-Complaint-Giuffre-v.-Prince-Andrew-C.txt"
+)
+
+# Capitalize the first letter and use straight apostrophes (for tables)
+cap <- function(x) {
+  x <- gsub("\u2019", "'", x)
+  x <- paste0(toupper(substr(x, 1, 1)), substring(x, 2))
+  # Acronyms in upper case
+  acr <- tolower(x) %in% c("jp", "aml", "bbc", "usvi")
+  x[acr] <- toupper(x[acr])
+  x
+}
+
+# Tokenization, removal of tokens with numbers and of stop words
+text <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = word) %>%
+  filter(!is.na(word)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word)) %>%
+  anti_join(stop_words, by = "word")
+```
+
+| | |
+|:--|:--|
+| **Document type** | Civil complaint (New York Child Victims Act) |
+| **Court** | U.S. District Court for the Southern District of New York |
+| **Case number** | 1:21-cv-06702 |
+| **Source** | [CourtListener](https://www.courtlistener.com/docket/60119368/giuffre-v-prince-andrew/) |
+| **Words (cleaned text)** | 3,390 |
+
+This legal document is a civil complaint filed by Virginia L. Giuffre against Prince Andrew, formerly Duke of York, in the U.S. District Court for the Southern District of New York, under New York's Child Victims Act. The plaintiff alleges that she was a victim of sex trafficking and systematic abuse by Jeffrey Epstein and Ghislaine Maxwell when she was a minor, and that, under coercion and implicit or express threats, she was forced to have sexual relations with the defendant on multiple occasions and in several places, including London, New York, and the U.S. Virgin Islands. The complaint argues that Prince Andrew acted deliberately, knowing that the plaintiff was a minor and a victim of trafficking, and adds that, after Epstein's arrest and subsequent death, the defendant has avoided cooperating with U.S. authorities. On the basis of these facts, which the complaint characterizes as serious sexual offenses under New York criminal law, the plaintiff brings claims for battery and intentional infliction of emotional distress and seeks damages for the profound and lasting psychological harm suffered. The defendant denied the allegations, and the case ended in an out-of-court settlement in 2022 with no findings of fact.
+
+## Word frequency
+
+@fig-freq-giuffre-v-prince-andrew shows the most frequent words in the text. Given the distribution of relative frequencies, no term stands out disproportionately; however, the first terms in order of frequency refer directly to the people involved in the case, such as "prince", "Epstein", "Andrew", and "plaintiff", which shows that the central ideas of the document revolve around these figures. Although not among the highest ranks, "Maxwell" is also a recurring term. Concepts linked to the alleged offenses also stand out, such as "sexual", "sex", "trafficking", "abuse", and "abused", making this one of the thematic axes throughout the complaint. Finally, there are words that provide geographical context and relevant legal terminology, such as "York" and "article".
+
+```{r}
+#| label: fig-freq-giuffre-v-prince-andrew
+#| fig-cap: "Bar chart: Giuffre v. Prince Andrew."
+#| fig-width: 8
+#| fig-height: 6
+
+text %>%
+  count(word, sort = TRUE) %>%
+  mutate(
+    percent = (n / sum(n)) * 100,
+    label   = paste0(n, " (", round(percent, 2), "%)"),
+    word    = reorder(word, n)
+  ) %>%
+  slice_max(n, n = 20, with_ties = FALSE) %>%
+  ggplot(aes(x = word, y = n)) +
+  geom_segment(aes(xend = word, yend = 0), color = "gray80", linewidth = 0.8) +
+  geom_point(color = "#C0392B", size = 3.5) +
+  geom_text(aes(label = label), hjust = -0.15, size = 3.5, color = "gray20") +
+  coord_flip() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(x = NULL, y = "Frequency") +
+  theme_minimal() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.y = element_text(size = 11, color = "black"),
+    axis.text.x = element_text(color = "gray40")
+  )
+```
+
+The word cloud in @fig-wordcloud-giuffre-v-prince-andrew shows terms referring to the possessions and surroundings of the prince and of Epstein, which are a relevant part of the text, since they may refer to their properties or to the logistical infrastructure of Epstein's alleged trafficking network. A word that stands out in particular for its frequency and connotation is "powerful", which describes the status of the people mentioned; this includes Epstein, described as a figure of great economic and social influence, and the Duke of York, because of his membership in the British royal family, which gave him a position of high social status.
+
+```{r}
+#| label: fig-wordcloud-giuffre-v-prince-andrew
+#| fig-cap: "Word cloud: Giuffre v. Prince Andrew."
+#| fig-width: 6
+#| fig-height: 6
+
+set.seed(1243)
+text %>%
+  count(word, sort = TRUE) %>%
+  with(wordcloud(
+    words = word,
+    freq  = n,
+    max.words = 20,
+    ordered.colors = FALSE,
+    colors = brewer.pal(9, "Greys")[7:9],
+    scale  = c(3.5, 0.6)
+  ))
+```
+
+The frequency analysis shows that the main actors of the complaint are Epstein, Prince Andrew, and Giuffre; although not among the most mentioned terms, Maxwell is another relevant figure in the narrative. The text also refers constantly to the alleged criminal conduct, which is one of the themes with the greatest weight in the document. Finally, there are concepts that refer directly to the socioeconomic status and power of those involved, which suggests that, according to the complaint, this influence was a determining factor during the period in which the events took place.
+
+## Sentiment analysis
+
+@fig-sentiment-giuffre-v-prince-andrew shows that, within the negative sentiment, the terms "abuse" and "abused" stand out, with much higher scores than the rest. In addition, terms such as "rape", "distress", "damages", "forced", and "humiliation" characterize the negative tone of the text, since they are directly linked to the experiences and suffering attributed to the victim. This set of terms sets out an explicit and severe account of the events at issue; the negative sentiment is thus defined by the explicit description of the alleged offenses, through the use of much cruder and stronger language.
+
+```{r}
+#| label: fig-sentiment-giuffre-v-prince-andrew
+#| fig-cap: "Bar chart of sentiment scores: Giuffre v. Prince Andrew."
+#| fig-width: 8
+#| fig-height: 6
+
+afinn <- get_sentiments("afinn")
+
+text %>%
+  inner_join(afinn, by = "word") %>%
+  count(word, value, sort = TRUE) %>%
+  mutate(score = n * value) %>%
+  filter(abs(score) > 5) %>%
+  mutate(sentiment = ifelse(value > 0, "Positive", "Negative")) %>%
+  mutate(word = reorder(word, score)) %>%
+  ggplot(aes(word, score, fill = sentiment)) +
+  geom_col(width = 0.7) +
+  coord_flip() +
+  scale_fill_manual(
+    name   = "Sentiment",
+    values = c("Negative" = "#d73027", "Positive" = "#4575b4")
+  ) +
+  scale_y_continuous(breaks = pretty_breaks(n = 20)) +
+  labs(y = "Score", x = NULL) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.y = element_text(face = "plain", color = "black", size = 11),
+    legend.position = "bottom"
+  )
+```
+
+By contrast, positive sentiment consists of only three terms. Among them, "united" refers to the United States, so it carries no real positive affective charge. The concepts "wealth" and "powerful" are usually associated with positive aspects when analyzed in isolation; however, in this specific context they are used to describe the socioeconomic power of the alleged perpetrators and how, according to the complaint, they used this influence to commit the offenses. Consequently, these terms acquire the opposite connotation, which shows that positive sentiment is nonexistent throughout the text.
+
+```{r}
+#| label: fig-emotions-giuffre-v-prince-andrew
+#| fig-cap: "Pie chart of emotions: Giuffre v. Prince Andrew."
+#| fig-width: 7
+#| fig-height: 6
+
+nrc <- get_sentiments("nrc")
+
+emotions <- text %>%
+  inner_join(nrc, by = "word", relationship = "many-to-many") %>%
+  filter(!sentiment %in% c("negative", "positive")) %>%
+  count(sentiment) %>%
+  mutate(
+    percent   = (n / sum(n)) * 100,
+    sentiment = str_to_title(sentiment),
+    label     = ifelse(percent > 2, paste0(round(percent, 1), "%"), "")
+  )
+
+pastel_colors <- c(
+  "Anger"        = "#FF9999",
+  "Sadness"      = "#4A90E2",
+  "Joy"          = "#FDFD96",
+  "Fear"         = "#CDB4DB",
+  "Disgust"      = "#66CC66",
+  "Anticipation" = "#FFB347",
+  "Surprise"     = "#FFD1DC",
+  "Trust"        = "#AEEEEE"
+)
+
+ggplot(emotions, aes(x = "", y = percent, fill = sentiment)) +
+  geom_bar(stat = "identity", width = 1, color = "white") +
+  coord_polar("y", start = 0) +
+  geom_text(
+    aes(x = 1.25, label = label),
+    position = position_stack(vjust = 0.5),
+    size = 4.5, fontface = "bold", color = "gray20"
+  ) +
+  scale_fill_manual(values = pastel_colors, name = "Emotions") +
+  theme_void()
+```
+
+@fig-emotions-giuffre-v-prince-andrew shows that the different emotions are distributed relatively uniformly; nevertheless, the predominant category is trust, which can be attributed to the repeated mention of institutional figures or bodies that formally evoke this emotion. There is also a significant presence of negative emotions such as sadness, fear, anger, and disgust, driven by the severity and crudeness with which the events are described. Unusually, joy has a moderately high percentage; however, this may be due to isolated terms that, out of their specific context, are classified as positive, as happens with the terms "wealth" and "powerful".
+
+The sentiment analysis shows that the overall tone of the text is markedly negative, with an almost nonexistent positive charge, because of the seriousness of the alleged offenses and the crudeness with which the events are described. Although no emotion stands out disproportionately, there is a high proportion of negative emotions such as sadness, fear, anger, and disgust. Finally, even though some terms associated with positive sentiments or emotions appear, when placed in their respective contexts these terms actually acquire a negative connotation within the narrative.
+
+## Word relationships
+
+The bigram network was built from the bigrams with a frequency of at least 3, in order to obtain an informative network rather than a noisy one, thus keeping the most relevant information in the text. The analysis uses the largest connected component of the graph, since it concentrates the most relevant information.
+
+```{r}
+#| label: fig-bigram-giuffre-v-prince-andrew
+#| fig-cap: "Largest connected component of the bigram network, without and with vertex strength: Giuffre v. Prince Andrew."
+#| fig-width: 14
+#| fig-height: 7
+
+text_bi_counts <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = bigram, token = "ngrams", n = 2) %>%
+  filter(!is.na(bigram)) %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!grepl(pattern = "[0-9]", x = word1)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word2)) %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word) %>%
+  filter(!is.na(word1), !is.na(word2)) %>%
+  count(word1, word2, sort = TRUE) %>%
+  rename(weight = n)
+
+# Bigrams that appear 3 or more times
+g <- text_bi_counts %>%
+  filter(weight > 2) %>%
+  graph_from_data_frame(directed = FALSE)
+
+V(g)$cluster <- components(graph = g)$membership
+gcc <- induced_subgraph(
+  graph = g,
+  vids  = which(V(g)$cluster == which.max(components(graph = g)$csize))
+)
+
+par(mfrow = c(1, 2), mar = c(1, 1, 2, 1), mgp = c(1, 1, 1))
+
+set.seed(9)
+plot(
+  gcc,
+  layout = layout_with_lgl,
+  vertex.color = 1,
+  vertex.frame.color = 1,
+  vertex.size = 3,
+  vertex.label.color = "black",
+  vertex.label.cex = 1,
+  vertex.label.dist = 1
+)
+
+set.seed(9)
+plot(
+  gcc,
+  layout = layout_with_lgl,
+  vertex.color = adjustcolor("darkolivegreen4", 0.1),
+  vertex.frame.color = "darkolivegreen4",
+  vertex.size = 0.5 * strength(gcc),
+  vertex.label.color = "black",
+  vertex.label.cex = 1,
+  vertex.label.dist = 1,
+  edge.width = 3 * E(gcc)$weight / max(E(gcc)$weight)
+)
+```
+
+@fig-bigram-giuffre-v-prince-andrew shows that the two vertices with the highest strength are those referring to the defendant; that is, they concentrate the largest number of connections throughout the text, acting as terms that link the general ideas of the document. The graph also directly shows his relationship with the plaintiff, since he is accused of having sexually abused her. Finally, the absence of vertices for Epstein and Maxwell stands out, which suggests that the central idea of this complaint revolves strictly around the plaintiff and the defendant, prioritizing the direct interaction between them.
+
+The bigram network shows that the connected component does not contain many terms, from which it can be inferred that the text revolves around a few key concepts. These are directly linked to Prince Andrew, who is the most relevant actor in the document, as well as to Giuffre and her account of the abuse she allegedly suffered. Finally, the structure of the graph clearly shows how these two people interact and relate to each other throughout the text, giving a clearer general idea of the facts described in the complaint.
+
+The skipgram network is built with all pairs, regardless of their frequency, which makes it possible to find semantic relationships that are not perceptible at first sight. The largest connected component is also used, since it contains the most important information and allows the computation of statistics that are not defined on a disconnected graph, such as the mean distance between vertices.
+
+```{r}
+#| label: tbl-skipgrams-giuffre-v-prince-andrew
+#| tbl-cap: "Skipgram frequencies: Giuffre v. Prince Andrew."
+
+text_skip_counts <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = skipgram, token = "skip_ngrams", n = 2) %>%
+  filter(!is.na(skipgram)) %>%
+  # Keep only pairs (remove unigrams)
+  filter(str_count(skipgram, "\\S+") == 2) %>%
+  separate(skipgram, c("word1", "word2"), sep = " ") %>%
+  filter(!grepl(pattern = "[0-9]", x = word1)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word2)) %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word) %>%
+  filter(!is.na(word1), !is.na(word2)) %>%
+  count(word1, word2, sort = TRUE) %>%
+  mutate(rel_freq = round((n / sum(n)) * 100, 2)) %>%
+  rename(weight = n)
+
+text_skip_counts %>%
+  head(n = 10) %>%
+  transmute(
+    `Word 1`     = cap(word1),
+    `Word 2`     = cap(word2),
+    `Freq.`      = weight,
+    `Rel. freq.` = paste0(format(rel_freq, nsmall = 2), "%")
+  ) %>%
+  kable(align = "llrr")
+
+# Network and largest connected component (used in the tables and figures below)
+g <- text_skip_counts %>%
+  filter(weight > 0) %>%
+  graph_from_data_frame(directed = FALSE)
+g <- igraph::simplify(g)
+
+V(g)$cluster <- components(graph = g)$membership
+gcc <- induced_subgraph(
+  graph = g,
+  vids  = which(V(g)$cluster == which.max(components(graph = g)$csize))
+)
+```
+
+@tbl-skipgrams-giuffre-v-prince-andrew shows the most frequent skipgrams in the document. Although no combination has a disproportionately high relative frequency, the most recurrent pair refers directly to the defendant and has a higher frequency than the others; this suggests that his mention is a fundamental element in articulating the different lines of argument of the text. Among the most common associations, "sex trafficking" stands out, a central concept in the narrative, since, according to the complaint, it was the mechanism through which subsequent offenses such as the abuse were committed, which also appears among the most frequent skipgrams. The relationship between Epstein and Maxwell also stands out, in contrast with the absence of direct links between the prince and these two actors. Finally, combinations such as "Epstein's trafficking" show that the text points to Epstein and his alleged trafficking network as the infrastructure from which the alleged abuse derived.
+
+::: {layout-ncol=2}
+
+```{r}
+#| label: tbl-skip-stats-giuffre-v-prince-andrew
+#| tbl-cap: "Statistics of the largest connected component of the skipgram network: Giuffre v. Prince Andrew."
+
+tibble(
+  Statistic = c(
+    "Mean distance", "Mean degree", "SD of degree",
+    "Clique number", "Density", "Transitivity", "Assortativity"
+  ),
+  Value = c(
+    mean_distance(gcc),
+    mean(degree(gcc)),
+    sd(degree(gcc)),
+    clique_num(gcc),
+    edge_density(gcc),
+    transitivity(gcc),
+    assortativity_degree(gcc)
+  )
+) %>%
+  kable(digits = 2, align = "lr")
+```
+
+```{r}
+#| label: tbl-eigen-giuffre-v-prince-andrew
+#| tbl-cap: "Eigenvector centrality in the largest connected component of the skipgram network: Giuffre v. Prince Andrew."
+
+tibble(
+  Word       = cap(V(gcc)$name),
+  Centrality = eigen_centrality(gcc)$vector
+) %>%
+  arrange(desc(Centrality)) %>%
+  slice_head(n = 10) %>%
+  kable(digits = 2, align = "lr")
+```
+
+:::
+
+@tbl-skip-stats-giuffre-v-prince-andrew shows that the mean distance of the network is 4.73; that is, on average, almost five steps are needed to go from one word to another. Being a moderate value, it suggests a less centralized narrative, in which the different concepts and actors are connected more gradually throughout the text. This interconnection is supported by the mean degree of 3.79, meaning that each word is directly connected to almost four different terms on average. However, the standard deviation of the degree is very high (6.81) compared with its mean, which reveals great variability: a few words are connected to many others, while most have very few connections. In other words, there are hub words that appear next to many different terms, which points to very marked themes in the text.
+
+Regarding the grouping of words, the clique number is 6, meaning that the largest group of words that are all connected to each other has 6 terms; such a structure usually reflects a frequently repeated central argument or words that always appear together. At the global level, however, the density of the network is 0.01, meaning that only 1% of all possible connections are present; the network is therefore very sparse, as is usual in word networks with a large and varied vocabulary. Consistently with this sparsity, the transitivity is 0.09, so there is only a 9% probability that two words connected to the same term are also connected to each other (forming triangles), which reflects a structure with low cohesion. Finally, the degree assortativity is negative (-0.12), indicating a mild tendency of highly connected words to link with words that have few connections, rather than with other central words.
+
+@tbl-eigen-giuffre-v-prince-andrew shows the most relevant words in the text according to eigenvector centrality. Notably, the first terms, "prince" and "Andrew", have much higher values than the rest of the vocabulary, which shows that they act as the central core of the document around which the other ideas are organized. The most significant terms are divided into two themes: on the one hand, the people directly involved in the case, such as "plaintiff", "Maxwell", and "Epstein"; on the other, concepts associated with the alleged offenses and events, represented by terms such as "sexually", "abused", and "incidents", which make the alleged criminal acts one of the central themes of the document.
+
+```{r}
+#| label: tbl-clusters-giuffre-v-prince-andrew
+#| tbl-cap: "Vertices with the highest strength in the five largest clusters: Giuffre v. Prince Andrew."
+
+# Clustering (fast greedy algorithm)
+set.seed(123)
+kc <- cluster_fast_greedy(gcc)
+
+cluster_data <- tibble(
+  Word     = V(gcc)$name,
+  Cluster  = membership(kc),
+  Strength = strength(gcc)
+)
+
+cluster_data %>%
+  group_by(Cluster) %>%
+  mutate(Size = n()) %>%
+  ungroup() %>%
+  arrange(desc(Size)) %>%
+  filter(Cluster %in% head(unique(Cluster), 5)) %>%
+  group_by(Cluster) %>%
+  arrange(desc(Strength), .by_group = TRUE) %>%
+  slice_head(n = 3) %>%
+  mutate(
+    Word    = cap(Word),
+    Size    = ifelse(row_number() == 1, as.character(Size), ""),
+    Cluster = ifelse(row_number() == 1, as.character(Cluster), "")
+  ) %>%
+  ungroup() %>%
+  select(Cluster, Size, Word, Strength) %>%
+  kable(digits = 0, align = "cclr")
+```
+
+@tbl-clusters-giuffre-v-prince-andrew presents the words with the highest strength in the five largest clusters obtained with the fast greedy algorithm. Cluster 1 shows the link between three fundamental actors in the narrative: Epstein, Maxwell, and the plaintiff. This indicates that, although the formal defendant is the Duke of York, the close relationship among these three individuals is central to the complaint. Clusters 2 and 4 describe, in a complementary way, the infrastructure of Epstein's alleged sex trafficking network and the profile of the victims, specifying that they were minors ("girls", "minor", "recruited"). Finally, cluster 3 groups the terms associated with Prince Andrew, while cluster 5 refers to the socioeconomic status of the alleged perpetrators ("wealth"), suggesting that, according to the complaint, this influence and status were key to the conduct alleged.
+
+## Additional figures {.appendix}
+
+```{r}
+#| label: fig-sentiment-cloud-giuffre-v-prince-andrew
+#| fig-cap: "Word cloud with sentiment charge: Giuffre v. Prince Andrew."
+#| fig-width: 7
+#| fig-height: 7
+
+set.seed(123)
+text %>%
+  inner_join(afinn, by = "word") %>%
+  count(word, value, sort = TRUE) %>%
+  mutate(sentiment = ifelse(value > 0, "Positive", "Negative")) %>%
+  mutate(impact = n * abs(value)) %>%
+  acast(word ~ sentiment, value.var = "impact", fill = 0) %>%
+  comparison.cloud(
+    colors     = c("firebrick", "steelblue"),   # Negative, Positive
+    max.words  = 50,
+    title.size = 1.5
+  )
+```
+
+```{r}
+#| label: fig-skipgram-giuffre-v-prince-andrew
+#| fig-cap: "Largest connected component of the skipgram network: Giuffre v. Prince Andrew."
+#| fig-width: 7
+#| fig-height: 7
+
+set.seed(123)
+ggraph(gcc, layout = "linear", circular = TRUE) +
+  geom_edge_arc(aes(edge_width = weight, edge_alpha = weight),
+                color = "darkolivegreen4", show.legend = FALSE) +
+  geom_node_point(aes(size = strength(gcc)), color = "gray20",
+                  alpha = 0.8, show.legend = FALSE) +
+  scale_edge_width_continuous(range = c(0.2, 1.5)) +
+  scale_edge_alpha_continuous(range = c(0.1, 0.5)) +
+  scale_size_continuous(range = c(1, 4)) +
+  theme_void() +
+  coord_fixed()
+```
+
+```{r}
+#| label: fig-clustering-giuffre-v-prince-andrew
+#| fig-cap: "Clustering of the largest connected component of the skipgram network: Giuffre v. Prince Andrew."
+#| fig-width: 7
+#| fig-height: 7
+
+cols <- c(
+  brewer.pal(9, "Set1")[1:9],
+  brewer.pal(8, "Set2")[1:7],
+  brewer.pal(8, "Set2")[1:7],
+  brewer.pal(12, "Set3")[1:3]
+)
+# Recycle the palette if there are more clusters than colors
+cols <- rep_len(cols, max(length(cols), length(kc)))
+
+gcc_tidy <- as_tbl_graph(gcc) %>%
+  activate(nodes) %>%
+  mutate(
+    strength  = strength(gcc),
+    community = as.factor(membership(kc))
+  ) %>%
+  arrange(community)
+
+set.seed(123)
+ggraph(gcc_tidy, layout = "linear", circular = TRUE) +
+  geom_edge_arc(aes(edge_alpha = weight, edge_width = weight),
+                color = "gray70", show.legend = FALSE) +
+  geom_node_point(aes(color = community, size = strength), show.legend = FALSE) +
+  scale_color_manual(values = cols) +
+  scale_size_continuous(range = c(1, 5)) +
+  scale_edge_width_continuous(range = c(0.5, 2)) +
+  scale_edge_alpha_continuous(range = c(0.4, 0.9)) +
+  theme_void() +
+  coord_fixed()
+```

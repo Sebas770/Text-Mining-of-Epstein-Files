@@ -1,0 +1,465 @@
+---
+title: "Johnson v. Trump and Epstein"
+subtitle: "Civil complaint filed on April 26, 2016"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(tidytext)
+library(magrittr)
+library(scales)
+library(wordcloud)
+library(RColorBrewer)
+library(reshape2)
+library(igraph)
+library(ggraph)
+library(tidygraph)
+library(knitr)
+
+data(stop_words)
+
+# Path relative to the project root (execute-dir: project in _quarto.yml)
+raw_text <- read_file(
+  "Data-Analysis/2016-04-26-Johnson-v.-Trump-and-Epstein/2016-04-26-Complaint-Johnson-v.-Trump-and-Epstein-C.txt"
+)
+
+# Capitalize the first letter and use straight apostrophes (for tables)
+cap <- function(x) {
+  x <- gsub("\u2019", "'", x)
+  x <- paste0(toupper(substr(x, 1, 1)), substring(x, 2))
+  # Acronyms in upper case
+  acr <- tolower(x) %in% c("jp", "aml", "bbc", "usvi")
+  x[acr] <- toupper(x[acr])
+  x
+}
+
+# Tokenization, removal of tokens with numbers and of stop words
+text <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = word) %>%
+  filter(!is.na(word)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word)) %>%
+  anti_join(stop_words, by = "word")
+```
+
+| | |
+|:--|:--|
+| **Document type** | Civil complaint (civil rights) |
+| **Court** | U.S. District Court for the Central District of California |
+| **Case number** | 5:16-cv-00797 |
+| **Source** | [CourtListener](https://www.courtlistener.com/docket/4154484/katie-johnson-v-donald-j-trump/) |
+| **Words (cleaned text)** | 1,577 |
+| **Note** | The document was transcribed manually. |
+
+This legal document is a civil complaint for violation of civil rights filed by a plaintiff identified as Katie Johnson against Donald J. Trump and Jeffrey E. Epstein in the U.S. District Court for the Central District of California. The plaintiff alleges that, when she was a 13-year-old minor, she was lured with false promises of a modeling career to attend parties held at Epstein's residence, where, according to the complaint, both defendants subjected her to repeated physical and psychological abuse and severe sexual assaults. The complaint argues that Trump and Epstein acted with extreme malice and in a coordinated manner, and that they later coerced her into silence through explicit death threats against her and her family. The account is also supported by the statement of a witness identified as Tiffany Doe, a former employee who claims to have witnessed the events. On these grounds, the plaintiff seeks one hundred million dollars in damages for the harm suffered and the violation of her fundamental rights. The allegations were never adjudicated on the merits.
+
+## Word frequency
+
+@fig-freq-johnson-v-trump shows the most frequently used words in the text. Overall, no word stands out in terms of relative frequency. The most frequent terms refer to the parties involved, such as "plaintiff" and "defendant", and to proper names such as "Katie Johnson", "Donald Trump", and "Jeffrey Epstein", which indicates that the general ideas and the narrative of the text revolve entirely around them. Among the most frequent words, those referring to the alleged offense also stand out, such as "sexual", "sex", "penis", "orgasm", "erect", "forced", and "physical", which shows that this is another central theme of the complaint and that it is described in great detail and in crude, explicit terms.
+
+```{r}
+#| label: fig-freq-johnson-v-trump
+#| fig-cap: "Bar chart: Johnson v. Trump and Epstein."
+#| fig-width: 8
+#| fig-height: 6
+
+text %>%
+  count(word, sort = TRUE) %>%
+  mutate(
+    percent = (n / sum(n)) * 100,
+    label   = paste0(n, " (", round(percent, 2), "%)"),
+    word    = reorder(word, n)
+  ) %>%
+  slice_max(n, n = 20, with_ties = FALSE) %>%
+  ggplot(aes(x = word, y = n)) +
+  geom_segment(aes(xend = word, yend = 0), color = "gray80", linewidth = 0.8) +
+  geom_point(color = "#C0392B", size = 3.5) +
+  geom_text(aes(label = label), hjust = -0.15, size = 3.5, color = "gray20") +
+  coord_flip() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(x = NULL, y = "Frequency") +
+  theme_minimal() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.y = element_text(size = 11, color = "black"),
+    axis.text.x = element_text(color = "gray40")
+  )
+```
+
+@fig-wordcloud-johnson-v-trump shows that no word stands out disproportionately; however, a set of terms related to the parties to the complaint does stand out to some extent. In addition to the words referring to the alleged sexual abuse, the word "parties" stands out, which gives an indication of the setting in which, according to the complaint, the abuse took place: the parties organized by Epstein.
+
+```{r}
+#| label: fig-wordcloud-johnson-v-trump
+#| fig-cap: "Word cloud: Johnson v. Trump and Epstein."
+#| fig-width: 6
+#| fig-height: 6
+
+set.seed(123)
+text %>%
+  count(word, sort = TRUE) %>%
+  with(wordcloud(
+    words = word,
+    freq  = n,
+    max.words = 20,
+    ordered.colors = FALSE,
+    colors = brewer.pal(9, "Greys")[7:9],
+    scale  = c(3.5, 0.6)
+  ))
+```
+
+In conclusion, the word frequency analysis gives a very clear indication of the tone and subject matter of the complaint, which focuses firmly on the parties involved and on the alleged acts. The events are narrated in detail, using an explicit narrative and a vocabulary that can be considered strong and highly sensitive. Overall, the document sets out very clearly who, according to the complaint, took part in the events described and how they acted.
+
+## Sentiment analysis
+
+@fig-sentiment-johnson-v-trump shows three words with a very high negative charge: "abuse", "rape", and "forced", all of them directly linked to the offenses alleged in the complaint. In addition, a considerable number of terms with a significant negative score reflect the cruelty and brutality of the acts described, such as "harm", "screamed", "abused", "cruelty", "threats", and "death". Consequently, almost all of the negative sentiment, besides having much higher scores than the positive sentiment, consists of violent and aggressive words that reflect the seriousness of the events described.
+
+```{r}
+#| label: fig-sentiment-johnson-v-trump
+#| fig-cap: "Bar chart of sentiment scores: Johnson v. Trump and Epstein."
+#| fig-width: 8
+#| fig-height: 7
+
+afinn <- get_sentiments("afinn")
+
+text %>%
+  inner_join(afinn, by = "word") %>%
+  count(word, value, sort = TRUE) %>%
+  mutate(score = n * value) %>%
+  filter(abs(score) > 1) %>%
+  mutate(sentiment = ifelse(value > 0, "Positive", "Negative")) %>%
+  mutate(word = reorder(word, score)) %>%
+  ggplot(aes(word, score, fill = sentiment)) +
+  geom_col(width = 0.7) +
+  coord_flip() +
+  scale_fill_manual(
+    name   = "Sentiment",
+    values = c("Negative" = "#d73027", "Positive" = "#4575b4")
+  ) +
+  scale_y_continuous(breaks = pretty_breaks(n = 10)) +
+  labs(y = "Score", x = NULL) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor   = element_blank(),
+    axis.text.y = element_text(face = "plain", color = "black", size = 11),
+    legend.position = "bottom"
+  )
+```
+
+The words associated with positive sentiment are "clean", "lucky", "trusted", "survived", "reached", "fortunate", "engage", and "agreed"; however, compared with the negative sentiment, they are few and have low scores. It should be noted that, depending on the context, these terms do not always have a positive connotation. For example, terms such as "survived", "lucky", and "fortunate" may be used to describe how the victim managed to escape the abuse alive. Likewise, terms such as "agreed" and "engage" may refer to the coercion and the forced arrangements mentioned in the complaint to make the plaintiff remain silent.
+
+```{r}
+#| label: fig-emotions-johnson-v-trump
+#| fig-cap: "Pie chart of emotions: Johnson v. Trump and Epstein."
+#| fig-width: 7
+#| fig-height: 6
+
+nrc <- get_sentiments("nrc")
+
+emotions <- text %>%
+  inner_join(nrc, by = "word", relationship = "many-to-many") %>%
+  filter(!sentiment %in% c("negative", "positive")) %>%
+  count(sentiment) %>%
+  mutate(
+    percent   = (n / sum(n)) * 100,
+    sentiment = str_to_title(sentiment),
+    label     = ifelse(percent > 2, paste0(round(percent, 1), "%"), "")
+  )
+
+pastel_colors <- c(
+  "Anger"        = "#FF9999",
+  "Sadness"      = "#4A90E2",
+  "Joy"          = "#FDFD96",
+  "Fear"         = "#CDB4DB",
+  "Disgust"      = "#66CC66",
+  "Anticipation" = "#FFB347",
+  "Surprise"     = "#FFD1DC",
+  "Trust"        = "#AEEEEE"
+)
+
+ggplot(emotions, aes(x = "", y = percent, fill = sentiment)) +
+  geom_bar(stat = "identity", width = 1, color = "white") +
+  coord_polar("y", start = 0) +
+  geom_text(
+    aes(x = 1.25, label = label),
+    position = position_stack(vjust = 0.5),
+    size = 4.5, fontface = "bold", color = "gray20"
+  ) +
+  scale_fill_manual(values = pastel_colors, name = "Emotions") +
+  theme_void()
+```
+
+@fig-emotions-johnson-v-trump shows that the three predominant emotions in the text, which together account for more than 50% of the words, are fear, anger, and sadness. This distribution is understandable given the very explicit vocabulary used in the complaint and the way the events are narrated, which clearly evoke these emotions. By contrast, joy and trust are among the categories with the lowest percentage of terms, which is fully consistent with the text. Since the complaint is a crude account of abuse, this marked contrast between the most and least frequent emotions is entirely consistent with the seriousness of the events it describes.
+
+In conclusion, the emotions and sentiments present in the text are mostly negative. This is evident both in the terms used and in the way they are structured within the text, with words linked to serious offenses, such as rape or threats, and very visceral terms to describe the events. By contrast, the words associated with positive sentiment are not very frequent and, as discussed above, their connotation is not always positive, since their actual meaning depends strictly on the context in which they are used in the complaint.
+
+## Word relationships
+
+The bigram network was built from the bigrams with a frequency of at least 2, in order to obtain an informative network rather than a noisy one, thus keeping the most relevant information in the text. The analysis uses the largest connected component of the graph, since it concentrates the most relevant information.
+
+```{r}
+#| label: fig-bigram-johnson-v-trump
+#| fig-cap: "Largest connected component of the bigram network, without and with vertex strength: Johnson v. Trump and Epstein."
+#| fig-width: 14
+#| fig-height: 7
+
+text_bi_counts <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = bigram, token = "ngrams", n = 2) %>%
+  filter(!is.na(bigram)) %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!grepl(pattern = "[0-9]", x = word1)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word2)) %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word) %>%
+  filter(!is.na(word1), !is.na(word2)) %>%
+  count(word1, word2, sort = TRUE) %>%
+  rename(weight = n)
+
+# Bigrams that appear 2 or more times
+g <- text_bi_counts %>%
+  filter(weight > 1) %>%
+  graph_from_data_frame(directed = FALSE)
+
+V(g)$cluster <- components(graph = g)$membership
+gcc <- induced_subgraph(
+  graph = g,
+  vids  = which(V(g)$cluster == which.max(components(graph = g)$csize))
+)
+
+par(mfrow = c(1, 2), mar = c(1, 1, 2, 1), mgp = c(1, 1, 1))
+
+set.seed(12)
+plot(
+  gcc,
+  layout = layout_with_lgl,
+  vertex.color = 1,
+  vertex.frame.color = 1,
+  vertex.size = 3,
+  vertex.label.color = "black",
+  vertex.label.cex = 1.1,
+  vertex.label.dist = 1
+)
+
+set.seed(12)
+plot(
+  gcc,
+  layout = layout_with_lgl,
+  vertex.color = adjustcolor("darkolivegreen4", 0.1),
+  vertex.frame.color = "darkolivegreen4",
+  vertex.size = 0.8 * strength(gcc),
+  vertex.label.color = "black",
+  vertex.label.cex = 1,
+  vertex.label.dist = 1,
+  edge.width = 3 * E(gcc)$weight / max(E(gcc)$weight)
+)
+```
+
+@fig-bigram-johnson-v-trump shows how the terms in the connected component of the bigram network are related. The central vertex with the highest strength is clearly "defendant", a term that unifies the references to both Trump and Epstein. The network also explicitly sets out the details of the alleged abuse and the role attributed to each individual, through combinations such as "physically abusing", "orally copulate", or "Trump's erect penis". This relational structure places the defendants and the detailed description of the conduct attributed to them at the center of the narrative.
+
+The bigram network shows in detail the nature of the alleged offenses and that the language used in the document is predominantly explicit and crude. These combinations are also highly relevant within the structure, given the strength of their vertices and the weight of their edges; that is, these bigrams are frequent in the text and are used more often than any other combination of two words. Although one of the main figures of the complaint, the plaintiff, does not explicitly appear in the connected component, it is easy to infer that all of the actions refer directly to her.
+
+The skipgram network is built with all pairs, regardless of their frequency, which makes it possible to find semantic relationships that are not perceptible at first sight. The largest connected component is also used, since it contains the most important information and allows the computation of statistics that are not defined on a disconnected graph, such as the mean distance between vertices.
+
+```{r}
+#| label: tbl-skipgrams-johnson-v-trump
+#| tbl-cap: "Skipgram frequencies: Johnson v. Trump and Epstein."
+
+text_skip_counts <- tibble(text = raw_text) %>%
+  unnest_tokens(input = text, output = skipgram, token = "skip_ngrams", n = 2) %>%
+  filter(!is.na(skipgram)) %>%
+  # Keep only pairs (remove unigrams)
+  filter(str_count(skipgram, "\\S+") == 2) %>%
+  separate(skipgram, c("word1", "word2"), sep = " ") %>%
+  filter(!grepl(pattern = "[0-9]", x = word1)) %>%
+  filter(!grepl(pattern = "[0-9]", x = word2)) %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word) %>%
+  filter(!is.na(word1), !is.na(word2)) %>%
+  count(word1, word2, sort = TRUE) %>%
+  mutate(rel_freq = round((n / sum(n)) * 100, 2)) %>%
+  rename(weight = n)
+
+text_skip_counts %>%
+  head(n = 10) %>%
+  transmute(
+    `Word 1`     = cap(word1),
+    `Word 2`     = cap(word2),
+    `Freq.`      = weight,
+    `Rel. freq.` = paste0(format(rel_freq, nsmall = 2), "%")
+  ) %>%
+  kable(align = "llrr")
+
+# Network and largest connected component (used in the tables and figures below)
+g <- text_skip_counts %>%
+  filter(weight > 0) %>%
+  graph_from_data_frame(directed = FALSE)
+g <- igraph::simplify(g)
+
+V(g)$cluster <- components(graph = g)$membership
+gcc <- induced_subgraph(
+  graph = g,
+  vids  = which(V(g)$cluster == which.max(components(graph = g)$csize))
+)
+```
+
+@tbl-skipgrams-johnson-v-trump shows the most frequent skipgrams in the text. The relative frequency shows that no combination stands out disproportionately; however, all of the most frequent skipgrams refer directly to the main actors: Johnson, Trump, and Epstein. In addition, the last of the most frequent skipgrams is "Tiffany Doe", the witness named in the complaint. This distribution shows the relevance and prominence of all the actors in the complaint, since they are mentioned repeatedly throughout the document.
+
+::: {layout-ncol=2}
+
+```{r}
+#| label: tbl-skip-stats-johnson-v-trump
+#| tbl-cap: "Statistics of the largest connected component of the skipgram network: Johnson v. Trump and Epstein."
+
+tibble(
+  Statistic = c(
+    "Mean distance", "Mean degree", "SD of degree",
+    "Clique number", "Density", "Transitivity", "Assortativity"
+  ),
+  Value = c(
+    mean_distance(gcc),
+    mean(degree(gcc)),
+    sd(degree(gcc)),
+    clique_num(gcc),
+    edge_density(gcc),
+    transitivity(gcc),
+    assortativity_degree(gcc)
+  )
+) %>%
+  kable(digits = 2, align = "lr")
+```
+
+```{r}
+#| label: tbl-eigen-johnson-v-trump
+#| tbl-cap: "Eigenvector centrality in the largest connected component of the skipgram network: Johnson v. Trump and Epstein."
+
+tibble(
+  Word       = cap(V(gcc)$name),
+  Centrality = eigen_centrality(gcc)$vector
+) %>%
+  arrange(desc(Centrality)) %>%
+  slice_head(n = 10) %>%
+  kable(digits = 2, align = "lr")
+```
+
+:::
+
+@tbl-skip-stats-johnson-v-trump shows that the mean distance of the network is 4.94; that is, on average, almost five steps are needed to go from one word to another. Being a relatively low value, it suggests a centralized narrative in which the different concepts and actors are quickly interconnected throughout the document. This interconnection is supported by the mean degree of 3.46, meaning that each word is directly connected to about three and a half different terms on average. However, the standard deviation of the degree is high (5.29) compared with its mean, which reveals great variability: a few words are connected to many others, while most have very few connections. In other words, there are hub words that appear next to many different terms, which points to very marked themes in the text.
+
+Regarding the grouping of words, the clique number is 5, meaning that the largest group of words that are all connected to each other has 5 terms; such a structure usually reflects a frequently repeated central argument or words that always appear together. At the global level, however, the density of the network is 0.02, meaning that only 2% of all possible connections are present; the network is therefore very sparse, as is usual in word networks with a large and varied vocabulary. Consistently with this sparsity, the transitivity is 0.11, so there is only a 11% probability that two words connected to the same term are also connected to each other (forming triangles), which reflects a structure with low cohesion. Finally, the degree assortativity is negative (-0.18), indicating a mild tendency of highly connected words to link with words that have few connections, rather than with other central words.
+
+@tbl-eigen-johnson-v-trump identifies the most relevant terms according to eigenvector centrality. The vertex with the highest score is "plaintiff", which shows that the word network is organized directly around this concept. This is consistent, since she is the central subject to whom both the alleged abuse and the actions of the alleged perpetrators refer; this is confirmed by the next terms in order of importance, "Johnson" and "Katie", which refer to the same person. On the other hand, a set of words referring to the alleged perpetrators, such as "defendant", "Trump", and "Epstein", stands out as another structural axis of the network. Finally, a word that ranks above some of the names of the actors is "forced", which can be used in different contexts in the complaint, such as being forced to perform sexual acts or to remain silent, which explains its centrality in the analysis.
+
+```{r}
+#| label: tbl-clusters-johnson-v-trump
+#| tbl-cap: "Vertices with the highest strength in the five largest clusters: Johnson v. Trump and Epstein."
+
+# Clustering (fast greedy algorithm)
+set.seed(123)
+kc <- cluster_fast_greedy(gcc)
+
+cluster_data <- tibble(
+  Word     = V(gcc)$name,
+  Cluster  = membership(kc),
+  Strength = strength(gcc)
+)
+
+cluster_data %>%
+  group_by(Cluster) %>%
+  mutate(Size = n()) %>%
+  ungroup() %>%
+  arrange(desc(Size)) %>%
+  filter(Cluster %in% head(unique(Cluster), 5)) %>%
+  group_by(Cluster) %>%
+  arrange(desc(Strength), .by_group = TRUE) %>%
+  slice_head(n = 3) %>%
+  mutate(
+    Word    = cap(Word),
+    Size    = ifelse(row_number() == 1, as.character(Size), ""),
+    Cluster = ifelse(row_number() == 1, as.character(Cluster), "")
+  ) %>%
+  ungroup() %>%
+  select(Cluster, Size, Word, Strength) %>%
+  kable(digits = 0, align = "cclr")
+```
+
+@tbl-clusters-johnson-v-trump presents the words with the highest strength in the five largest clusters obtained with the fast greedy algorithm. In cluster 1, the predominant terms are "defendant", "Epstein", and "Trump", so the theme of this group revolves around the defendants. A similar pattern occurs in clusters 2 and 3, which refer directly to the plaintiff and to the witness, respectively; this shows that three of the main cores of the complaint correspond to its key figures: defendants, plaintiff, and witness. Cluster 4, on the other hand, is characterized by the terms "sexual", "orgasm", and "physical", and focuses explicitly on the description of the alleged act. Finally, cluster 5 revolves around the setting in which, according to the complaint, the offenses took place, through keywords such as "parties" and "underage".
+
+## Additional figures {.appendix}
+
+```{r}
+#| label: fig-sentiment-cloud-johnson-v-trump
+#| fig-cap: "Word cloud with sentiment charge: Johnson v. Trump and Epstein."
+#| fig-width: 7
+#| fig-height: 7
+
+set.seed(123)
+text %>%
+  inner_join(afinn, by = "word") %>%
+  count(word, value, sort = TRUE) %>%
+  mutate(sentiment = ifelse(value > 0, "Positive", "Negative")) %>%
+  mutate(impact = n * abs(value)) %>%
+  acast(word ~ sentiment, value.var = "impact", fill = 0) %>%
+  comparison.cloud(
+    colors     = c("firebrick", "steelblue"),   # Negative, Positive
+    max.words  = 50,
+    title.size = 1.5
+  )
+```
+
+```{r}
+#| label: fig-skipgram-johnson-v-trump
+#| fig-cap: "Largest connected component of the skipgram network: Johnson v. Trump and Epstein."
+#| fig-width: 7
+#| fig-height: 7
+
+set.seed(123)
+ggraph(gcc, layout = "linear", circular = TRUE) +
+  geom_edge_arc(aes(edge_width = weight, edge_alpha = weight),
+                color = "darkolivegreen4", show.legend = FALSE) +
+  geom_node_point(aes(size = strength(gcc)), color = "gray20",
+                  alpha = 0.8, show.legend = FALSE) +
+  scale_edge_width_continuous(range = c(0.2, 1.5)) +
+  scale_edge_alpha_continuous(range = c(0.1, 0.5)) +
+  scale_size_continuous(range = c(1, 4)) +
+  theme_void() +
+  coord_fixed()
+```
+
+```{r}
+#| label: fig-clustering-johnson-v-trump
+#| fig-cap: "Clustering of the largest connected component of the skipgram network: Johnson v. Trump and Epstein."
+#| fig-width: 7
+#| fig-height: 7
+
+cols <- c(
+  brewer.pal(9, "Set1")[1:9],
+  brewer.pal(8, "Set2")[1:7],
+  brewer.pal(8, "Set2")[1:7],
+  brewer.pal(12, "Set3")[1:3]
+)
+# Recycle the palette if there are more clusters than colors
+cols <- rep_len(cols, max(length(cols), length(kc)))
+
+gcc_tidy <- as_tbl_graph(gcc) %>%
+  activate(nodes) %>%
+  mutate(
+    strength  = strength(gcc),
+    community = as.factor(membership(kc))
+  ) %>%
+  arrange(community)
+
+set.seed(123)
+ggraph(gcc_tidy, layout = "linear", circular = TRUE) +
+  geom_edge_arc(aes(edge_alpha = weight, edge_width = weight),
+                color = "gray70", show.legend = FALSE) +
+  geom_node_point(aes(color = community, size = strength), show.legend = FALSE) +
+  scale_color_manual(values = cols) +
+  scale_size_continuous(range = c(1, 5)) +
+  scale_edge_width_continuous(range = c(0.5, 2)) +
+  scale_edge_alpha_continuous(range = c(0.4, 0.9)) +
+  theme_void() +
+  coord_fixed()
+```

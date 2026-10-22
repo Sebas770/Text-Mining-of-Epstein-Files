@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Giuffre v. Prince Andrew – Text Mining of the Epstein Case Court Filings</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cases/01-giuffre-v-maxwell.html">Cases</a></li><li class="breadcrumb-item"><a href="../cases/06-giuffre-v-prince-andrew.html">Giuffre v. Prince Andrew</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Text Mining of the Epstein Case Court Filings</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Text Mining and Linguistic Network Analysis of Court Filings in the Epstein Case</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Cases</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/01-giuffre-v-maxwell.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Giuffre v. Maxwell</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/02-johnson-v-trump-and-epstein.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Johnson v. Trump and Epstein</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/03-giuffre-v-dershowitz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Giuffre v. Dershowitz</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/04-usa-v-epstein.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">United States v. Epstein</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/05-usa-v-maxwell.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">United States v. Maxwell</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/06-giuffre-v-prince-andrew.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Giuffre v. Prince Andrew</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/07-doe-v-deutsche-bank.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Doe v. Deutsche Bank</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/08-doe-v-jp-morgan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Doe v. JP Morgan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/09-pierson-v-black.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pierson v. Black</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cases/10-government-v-jp-morgan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Government of the USVI v. JP Morgan</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#word-frequency" id="toc-word-frequency" class="nav-link active" data-scroll-target="#word-frequency">Word frequency</a></li>
+  <li><a href="#sentiment-analysis" id="toc-sentiment-analysis" class="nav-link" data-scroll-target="#sentiment-analysis">Sentiment analysis</a></li>
+  <li><a href="#word-relationships" id="toc-word-relationships" class="nav-link" data-scroll-target="#word-relationships">Word relationships</a></li>
+  
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cases/01-giuffre-v-maxwell.html">Cases</a></li><li class="breadcrumb-item"><a href="../cases/06-giuffre-v-prince-andrew.html">Giuffre v. Prince Andrew</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Giuffre v. Prince Andrew</h1>
+<p class="subtitle lead">Civil complaint filed on August 9, 2021</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Document type</strong></td>
+<td style="text-align: left;">Civil complaint (New York Child Victims Act)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Court</strong></td>
+<td style="text-align: left;">U.S. District Court for the Southern District of New York</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Case number</strong></td>
+<td style="text-align: left;">1:21-cv-06702</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Source</strong></td>
+<td style="text-align: left;"><a href="https://www.courtlistener.com/docket/60119368/giuffre-v-prince-andrew/">CourtListener</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Words (cleaned text)</strong></td>
+<td style="text-align: left;">3,390</td>
+</tr>
+</tbody>
+</table>
+<p>This legal document is a civil complaint filed by Virginia L. Giuffre against Prince Andrew, formerly Duke of York, in the U.S. District Court for the Southern District of New York, under New York’s Child Victims Act. The plaintiff alleges that she was a victim of sex trafficking and systematic abuse by Jeffrey Epstein and Ghislaine Maxwell when she was a minor, and that, under coercion and implicit or express threats, she was forced to have sexual relations with the defendant on multiple occasions and in several places, including London, New York, and the U.S. Virgin Islands. The complaint argues that Prince Andrew acted deliberately, knowing that the plaintiff was a minor and a victim of trafficking, and adds that, after Epstein’s arrest and subsequent death, the defendant has avoided cooperating with U.S. authorities. On the basis of these facts, which the complaint characterizes as serious sexual offenses under New York criminal law, the plaintiff brings claims for battery and intentional infliction of emotional distress and seeks damages for the profound and lasting psychological harm suffered. The defendant denied the allegations, and the case ended in an out-of-court settlement in 2022 with no findings of fact.</p>
+<section id="word-frequency" class="level2">
+<h2 class="anchored" data-anchor-id="word-frequency">Word frequency</h2>
+<p><a href="#fig-freq-giuffre-v-prince-andrew" class="quarto-xref">Figure&nbsp;1</a> shows the most frequent words in the text. Given the distribution of relative frequencies, no term stands out disproportionately; however, the first terms in order of frequency refer directly to the people involved in the case, such as “prince”, “Epstein”, “Andrew”, and “plaintiff”, which shows that the central ideas of the document revolve around these figures. Although not among the highest ranks, “Maxwell” is also a recurring term. Concepts linked to the alleged offenses also stand out, such as “sexual”, “sex”, “trafficking”, “abuse”, and “abused”, making this one of the thematic axes throughout the complaint. Finally, there are words that provide geographical context and relevant legal terminology, such as “York” and “article”.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-freq-giuffre-v-prince-andrew" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-freq-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-giuffre-v-prince-andrew_files/figure-html/fig-freq-giuffre-v-prince-andrew-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-freq-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Bar chart: Giuffre v. Prince Andrew.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The word cloud in <a href="#fig-wordcloud-giuffre-v-prince-andrew" class="quarto-xref">Figure&nbsp;2</a> shows terms referring to the possessions and surroundings of the prince and of Epstein, which are a relevant part of the text, since they may refer to their properties or to the logistical infrastructure of Epstein’s alleged trafficking network. A word that stands out in particular for its frequency and connotation is “powerful”, which describes the status of the people mentioned; this includes Epstein, described as a figure of great economic and social influence, and the Duke of York, because of his membership in the British royal family, which gave him a position of high social status.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-wordcloud-giuffre-v-prince-andrew" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wordcloud-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-giuffre-v-prince-andrew_files/figure-html/fig-wordcloud-giuffre-v-prince-andrew-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wordcloud-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Word cloud: Giuffre v. Prince Andrew.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The frequency analysis shows that the main actors of the complaint are Epstein, Prince Andrew, and Giuffre; although not among the most mentioned terms, Maxwell is another relevant figure in the narrative. The text also refers constantly to the alleged criminal conduct, which is one of the themes with the greatest weight in the document. Finally, there are concepts that refer directly to the socioeconomic status and power of those involved, which suggests that, according to the complaint, this influence was a determining factor during the period in which the events took place.</p>
+</section>
+<section id="sentiment-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="sentiment-analysis">Sentiment analysis</h2>
+<p><a href="#fig-sentiment-giuffre-v-prince-andrew" class="quarto-xref">Figure&nbsp;3</a> shows that, within the negative sentiment, the terms “abuse” and “abused” stand out, with much higher scores than the rest. In addition, terms such as “rape”, “distress”, “damages”, “forced”, and “humiliation” characterize the negative tone of the text, since they are directly linked to the experiences and suffering attributed to the victim. This set of terms sets out an explicit and severe account of the events at issue; the negative sentiment is thus defined by the explicit description of the alleged offenses, through the use of much cruder and stronger language.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sentiment-giuffre-v-prince-andrew" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sentiment-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-giuffre-v-prince-andrew_files/figure-html/fig-sentiment-giuffre-v-prince-andrew-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sentiment-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Bar chart of sentiment scores: Giuffre v. Prince Andrew.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>By contrast, positive sentiment consists of only three terms. Among them, “united” refers to the United States, so it carries no real positive affective charge. The concepts “wealth” and “powerful” are usually associated with positive aspects when analyzed in isolation; however, in this specific context they are used to describe the socioeconomic power of the alleged perpetrators and how, according to the complaint, they used this influence to commit the offenses. Consequently, these terms acquire the opposite connotation, which shows that positive sentiment is nonexistent throughout the text.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-emotions-giuffre-v-prince-andrew" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-emotions-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-giuffre-v-prince-andrew_files/figure-html/fig-emotions-giuffre-v-prince-andrew-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-emotions-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Pie chart of emotions: Giuffre v. Prince Andrew.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-emotions-giuffre-v-prince-andrew" class="quarto-xref">Figure&nbsp;4</a> shows that the different emotions are distributed relatively uniformly; nevertheless, the predominant category is trust, which can be attributed to the repeated mention of institutional figures or bodies that formally evoke this emotion. There is also a significant presence of negative emotions such as sadness, fear, anger, and disgust, driven by the severity and crudeness with which the events are described. Unusually, joy has a moderately high percentage; however, this may be due to isolated terms that, out of their specific context, are classified as positive, as happens with the terms “wealth” and “powerful”.</p>
+<p>The sentiment analysis shows that the overall tone of the text is markedly negative, with an almost nonexistent positive charge, because of the seriousness of the alleged offenses and the crudeness with which the events are described. Although no emotion stands out disproportionately, there is a high proportion of negative emotions such as sadness, fear, anger, and disgust. Finally, even though some terms associated with positive sentiments or emotions appear, when placed in their respective contexts these terms actually acquire a negative connotation within the narrative.</p>
+</section>
+<section id="word-relationships" class="level2">
+<h2 class="anchored" data-anchor-id="word-relationships">Word relationships</h2>
+<p>The bigram network was built from the bigrams with a frequency of at least 3, in order to obtain an informative network rather than a noisy one, thus keeping the most relevant information in the text. The analysis uses the largest connected component of the graph, since it concentrates the most relevant information.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bigram-giuffre-v-prince-andrew" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bigram-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-giuffre-v-prince-andrew_files/figure-html/fig-bigram-giuffre-v-prince-andrew-1.png" class="img-fluid figure-img" width="1344">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bigram-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Largest connected component of the bigram network, without and with vertex strength: Giuffre v. Prince Andrew.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-bigram-giuffre-v-prince-andrew" class="quarto-xref">Figure&nbsp;5</a> shows that the two vertices with the highest strength are those referring to the defendant; that is, they concentrate the largest number of connections throughout the text, acting as terms that link the general ideas of the document. The graph also directly shows his relationship with the plaintiff, since he is accused of having sexually abused her. Finally, the absence of vertices for Epstein and Maxwell stands out, which suggests that the central idea of this complaint revolves strictly around the plaintiff and the defendant, prioritizing the direct interaction between them.</p>
+<p>The bigram network shows that the connected component does not contain many terms, from which it can be inferred that the text revolves around a few key concepts. These are directly linked to Prince Andrew, who is the most relevant actor in the document, as well as to Giuffre and her account of the abuse she allegedly suffered. Finally, the structure of the graph clearly shows how these two people interact and relate to each other throughout the text, giving a clearer general idea of the facts described in the complaint.</p>
+<p>The skipgram network is built with all pairs, regardless of their frequency, which makes it possible to find semantic relationships that are not perceptible at first sight. The largest connected component is also used, since it contains the most important information and allows the computation of statistics that are not defined on a disconnected graph, such as the mean distance between vertices.</p>
+<div class="cell">
+<div id="tbl-skipgrams-giuffre-v-prince-andrew" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-skipgrams-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Word 1</th>
+<th style="text-align: left;">Word 2</th>
+<th style="text-align: right;">Freq.</th>
+<th style="text-align: right;">Rel. freq.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Prince</td>
+<td style="text-align: left;">Andrew</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">3.69%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sex</td>
+<td style="text-align: left;">Trafficking</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">1.06%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Prince</td>
+<td style="text-align: left;">Andrew’s</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0.75%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Epstein</td>
+<td style="text-align: left;">Maxwell</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.69%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Epstein’s</td>
+<td style="text-align: left;">Trafficking</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.63%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Epstein’s</td>
+<td style="text-align: left;">Sex</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0.56%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Jeffrey</td>
+<td style="text-align: left;">Epstein</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0.56%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sexual</td>
+<td style="text-align: left;">Abuse</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0.56%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sexually</td>
+<td style="text-align: left;">Plaintiff</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0.56%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Abused</td>
+<td style="text-align: left;">Plaintiff</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.50%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-skipgrams-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Skipgram frequencies: Giuffre v. Prince Andrew.
+</figcaption>
+</figure>
+</div>
+</div>
+<p><a href="#tbl-skipgrams-giuffre-v-prince-andrew" class="quarto-xref">Table&nbsp;1</a> shows the most frequent skipgrams in the document. Although no combination has a disproportionately high relative frequency, the most recurrent pair refers directly to the defendant and has a higher frequency than the others; this suggests that his mention is a fundamental element in articulating the different lines of argument of the text. Among the most common associations, “sex trafficking” stands out, a central concept in the narrative, since, according to the complaint, it was the mechanism through which subsequent offenses such as the abuse were committed, which also appears among the most frequent skipgrams. The relationship between Epstein and Maxwell also stands out, in contrast with the absence of direct links between the prince and these two actors. Finally, combinations such as “Epstein’s trafficking” show that the text points to Epstein and his alleged trafficking network as the infrastructure from which the alleged abuse derived.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="tbl-skip-stats-giuffre-v-prince-andrew" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-skip-stats-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Statistic</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean distance</td>
+<td style="text-align: right;">4.73</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mean degree</td>
+<td style="text-align: right;">3.79</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SD of degree</td>
+<td style="text-align: right;">6.81</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clique number</td>
+<td style="text-align: right;">6.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Density</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Transitivity</td>
+<td style="text-align: right;">0.09</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Assortativity</td>
+<td style="text-align: right;">-0.12</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-skip-stats-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Statistics of the largest connected component of the skipgram network: Giuffre v. Prince Andrew.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="tbl-eigen-giuffre-v-prince-andrew" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-eigen-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Word</th>
+<th style="text-align: right;">Centrality</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Prince</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Andrew</td>
+<td style="text-align: right;">0.98</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sexually</td>
+<td style="text-align: right;">0.21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Andrew’s</td>
+<td style="text-align: right;">0.20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Plaintiff</td>
+<td style="text-align: right;">0.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Abused</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maxwell</td>
+<td style="text-align: right;">0.14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Incidents</td>
+<td style="text-align: right;">0.13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Defendant</td>
+<td style="text-align: right;">0.12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Epstein</td>
+<td style="text-align: right;">0.10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-eigen-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Eigenvector centrality in the largest connected component of the skipgram network: Giuffre v. Prince Andrew.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p><a href="#tbl-skip-stats-giuffre-v-prince-andrew" class="quarto-xref">Table&nbsp;2</a> shows that the mean distance of the network is 4.73; that is, on average, almost five steps are needed to go from one word to another. Being a moderate value, it suggests a less centralized narrative, in which the different concepts and actors are connected more gradually throughout the text. This interconnection is supported by the mean degree of 3.79, meaning that each word is directly connected to almost four different terms on average. However, the standard deviation of the degree is very high (6.81) compared with its mean, which reveals great variability: a few words are connected to many others, while most have very few connections. In other words, there are hub words that appear next to many different terms, which points to very marked themes in the text.</p>
+<p>Regarding the grouping of words, the clique number is 6, meaning that the largest group of words that are all connected to each other has 6 terms; such a structure usually reflects a frequently repeated central argument or words that always appear together. At the global level, however, the density of the network is 0.01, meaning that only 1% of all possible connections are present; the network is therefore very sparse, as is usual in word networks with a large and varied vocabulary. Consistently with this sparsity, the transitivity is 0.09, so there is only a 9% probability that two words connected to the same term are also connected to each other (forming triangles), which reflects a structure with low cohesion. Finally, the degree assortativity is negative (-0.12), indicating a mild tendency of highly connected words to link with words that have few connections, rather than with other central words.</p>
+<p><a href="#tbl-eigen-giuffre-v-prince-andrew" class="quarto-xref">Table&nbsp;3</a> shows the most relevant words in the text according to eigenvector centrality. Notably, the first terms, “prince” and “Andrew”, have much higher values than the rest of the vocabulary, which shows that they act as the central core of the document around which the other ideas are organized. The most significant terms are divided into two themes: on the one hand, the people directly involved in the case, such as “plaintiff”, “Maxwell”, and “Epstein”; on the other, concepts associated with the alleged offenses and events, represented by terms such as “sexually”, “abused”, and “incidents”, which make the alleged criminal acts one of the central themes of the document.</p>
+<div class="cell">
+<div id="tbl-clusters-giuffre-v-prince-andrew" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-clusters-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Cluster</th>
+<th style="text-align: center;">Size</th>
+<th style="text-align: left;">Word</th>
+<th style="text-align: right;">Strength</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">98</td>
+<td style="text-align: left;">Epstein</td>
+<td style="text-align: right;">114</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Plaintiff</td>
+<td style="text-align: right;">104</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Maxwell</td>
+<td style="text-align: right;">46</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">53</td>
+<td style="text-align: left;">Epstein’s</td>
+<td style="text-align: right;">79</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Sex</td>
+<td style="text-align: right;">58</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Trafficking</td>
+<td style="text-align: right;">49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">83</td>
+<td style="text-align: left;">Prince</td>
+<td style="text-align: right;">196</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Andrew</td>
+<td style="text-align: right;">153</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Andrew’s</td>
+<td style="text-align: right;">36</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">43</td>
+<td style="text-align: left;">Girls</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Minor</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Recruited</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: left;">Numerous</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Wealth</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">N.y</td>
+<td style="text-align: right;">11</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-clusters-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: Vertices with the highest strength in the five largest clusters: Giuffre v. Prince Andrew.
+</figcaption>
+</figure>
+</div>
+</div>
+<p><a href="#tbl-clusters-giuffre-v-prince-andrew" class="quarto-xref">Table&nbsp;4</a> presents the words with the highest strength in the five largest clusters obtained with the fast greedy algorithm. Cluster 1 shows the link between three fundamental actors in the narrative: Epstein, Maxwell, and the plaintiff. This indicates that, although the formal defendant is the Duke of York, the close relationship among these three individuals is central to the complaint. Clusters 2 and 4 describe, in a complementary way, the infrastructure of Epstein’s alleged sex trafficking network and the profile of the victims, specifying that they were minors (“girls”, “minor”, “recruited”). Finally, cluster 3 groups the terms associated with Prince Andrew, while cluster 5 refers to the socioeconomic status of the alleged perpetrators (“wealth”), suggesting that, according to the complaint, this influence and status were key to the conduct alleged.</p>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="additional-figures" class="level2 appendix"><h2 class="anchored quarto-appendix-heading">Additional figures</h2><div class="quarto-appendix-contents">
+
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sentiment-cloud-giuffre-v-prince-andrew" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sentiment-cloud-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-giuffre-v-prince-andrew_files/figure-html/fig-sentiment-cloud-giuffre-v-prince-andrew-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sentiment-cloud-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Word cloud with sentiment charge: Giuffre v. Prince Andrew.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-skipgram-giuffre-v-prince-andrew" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-skipgram-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-giuffre-v-prince-andrew_files/figure-html/fig-skipgram-giuffre-v-prince-andrew-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-skipgram-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Largest connected component of the skipgram network: Giuffre v. Prince Andrew.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-clustering-giuffre-v-prince-andrew" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-clustering-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-giuffre-v-prince-andrew_files/figure-html/fig-clustering-giuffre-v-prince-andrew-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clustering-giuffre-v-prince-andrew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Clustering of the largest connected component of the skipgram network: Giuffre v. Prince Andrew.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
